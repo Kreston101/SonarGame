@@ -7,7 +7,8 @@ Todo list:
 - [ ] Enemies/Obstacles
 - [ ] Health and damage
 - [ ] 3-5 playable levels
-- [ ] Hostile entity <br/>
+- [ ] Hostile entity
+
 Finish core mechanic by 12/01/24 (1-3)
 
 Potentially todo:
