@@ -1,23 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=6 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSub.cs" id="1_mes06"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvhhy"]
-radius = 37.0
-height = 150.0
+[ext_resource type="Texture2D" uid="uid://c6aclvjhclai6" path="res://QuarterCircle.png" id="2_tl846"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b7g1o"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_xh1t3"]
 
-[node name="PlayerSub" type="CharacterBody2D"]
-position = Vector2(552, 308)
-script = ExtResource("1_mes06")
-metadata/_edit_group_ = true
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvhhy"]
+radius = 37.0
+height = 150.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_wvhhy")
+[node name="PlayerSub" type="CharacterBody2D"]
+script = ExtResource("1_mes06")
 
 [node name="SubBody" type="Node2D" parent="."]
 
@@ -31,3 +26,51 @@ position = Vector2(-77.008, 0)
 rotation = -1.5708
 scale = Vector2(75.5173, 30.1709)
 mesh = SubResource("PrismMesh_xh1t3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wvhhy")
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="NorthCast" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, -300)
+
+[node name="EastCast" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(300, 0)
+
+[node name="SouthCast" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(0, 300)
+
+[node name="WestCast" type="RayCast2D" parent="Raycasts"]
+target_position = Vector2(-300, 0)
+
+[node name="Indicators" type="Node2D" parent="."]
+rotation = 0.785398
+
+[node name="NorthQuad" type="Sprite2D" parent="Indicators"]
+visible = false
+position = Vector2(-65, -65)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tl846")
+
+[node name="EastQuad" type="Sprite2D" parent="Indicators"]
+visible = false
+position = Vector2(65, -65)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tl846")
+
+[node name="SouthQuad" type="Sprite2D" parent="Indicators"]
+visible = false
+position = Vector2(65, 65)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tl846")
+
+[node name="WestQuad" type="Sprite2D" parent="Indicators"]
+visible = false
+position = Vector2(-65, 65)
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_tl846")

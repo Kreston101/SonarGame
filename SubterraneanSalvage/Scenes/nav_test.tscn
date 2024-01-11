@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6b5y1pp316ei"]
+
+[ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
+[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_6dof3"]
+
+[node name="NavTest" type="Node2D"]
+
+[node name="PlayerSub" parent="." instance=ExtResource("1_acchm")]
+position = Vector2(310, 453)
+
+[node name="Brick" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(638, 10)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(1075, 196)
+rotation = -0.47822
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(342, 653)
+scale = Vector2(7.535, 1)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(-35, 394)
+scale = Vector2(1, 4.7)
