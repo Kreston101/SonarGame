@@ -2,8 +2,12 @@
 Concept test
 
 Todo list:
-- [ ] Movement system
+- [x] Movement system
 - [ ] Sonar system
+  - [x] Basic ping
+  - [ ] Charge basic ping
+  - [ ] Ranging ping
+  - [ ] Ping expiration timers
 - [ ] Oxygen system
 - [ ] Enemies/Obstacles
 - [ ] Health and damage
