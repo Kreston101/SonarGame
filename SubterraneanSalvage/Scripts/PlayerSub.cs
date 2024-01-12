@@ -1,14 +1,19 @@
 using Godot;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 public partial class PlayerSub : CharacterBody2D
 {
 	public float speed = 300.0f;
 	[Export] public float speedMultiplier = 1f;
+	[Export] public float pingCoolDown = 3f;
+	[Export] public PackedScene rangedPingObj;
 
 	private Node2D subBody;
 	private Node2D rayCasts;
 	private Node2D indicators;
+	private Node2D pivot;
+	private Node2D pingSpawn;
 
 	private float timer = 0;
 
@@ -17,6 +22,8 @@ public partial class PlayerSub : CharacterBody2D
 		subBody = (Node2D)GetNode("SubBody");
 		rayCasts = (Node2D)GetNode("Raycasts");
 		indicators = (Node2D)GetNode("Indicators");
+		pivot = (Node2D)GetNode("Pivot");
+		pingSpawn = (Node2D)GetNode("Pivot/SpawnPoint");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -51,7 +58,7 @@ public partial class PlayerSub : CharacterBody2D
 			{
 				speedMultiplier += 0.5f;
 			}
-			GD.Print(speedMultiplier);
+			//GD.Print(speedMultiplier);
 		}
 		if (Input.IsActionJustPressed("Speed-"))
 		{
@@ -59,7 +66,7 @@ public partial class PlayerSub : CharacterBody2D
 			{
 				speedMultiplier -= 0.5f;
 			}
-			GD.Print(speedMultiplier);
+			//GD.Print(speedMultiplier);
 		}
 
 		Position += velocity.Normalized() * speed * speedMultiplier * (float)delta;
@@ -70,15 +77,21 @@ public partial class PlayerSub : CharacterBody2D
 			SubPing();
 		}
 
-		MoveAndSlide();
-
 		float limit = 2f;
 		if (timer >= limit)
 		{
-			GD.Print("ran");
 			ExpirePing();
 			timer = 0;
 		}
+
+		if (Input.IsActionJustPressed("FirePing"))
+		{
+			RangedPing();
+		}
+
+		pivot.LookAt(GetGlobalMousePosition());
+
+		MoveAndSlide();
 	}
 
 	public void SubPing()
@@ -106,5 +119,14 @@ public partial class PlayerSub : CharacterBody2D
 		{
 			child.Hide();
 		}
+	}
+
+	public void RangedPing()
+	{
+		Node2D ping = (Node2D)rangedPingObj.Instantiate();
+		AddSibling(ping);
+		ping.Position = pingSpawn.GlobalPosition;
+		RangedPing pingObjScript = ping as RangedPing;
+		pingObjScript.direction = (GetGlobalMousePosition() - pingObjScript.GlobalPosition).Normalized();
 	}
 }

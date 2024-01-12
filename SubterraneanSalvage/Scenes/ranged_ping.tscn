@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2oodqqubugm7"]
+
+[ext_resource type="Script" path="res://Scripts/RangedPing.cs" id="1_jg8tf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1pbfj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fk125"]
+radius = 12.0
+
+[node name="RangedPing" type="Area2D"]
+script = ExtResource("1_jg8tf")
+speed = 1000.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(24, 24)
+mesh = SubResource("SphereMesh_1pbfj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fk125")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_shape_entered" from="." to="." method="OnBodyShapeEntered"]
