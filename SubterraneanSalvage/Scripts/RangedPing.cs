@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 using System;
 
 public partial class RangedPing : Area2D
@@ -8,7 +9,7 @@ public partial class RangedPing : Area2D
 	[Export] public float maxLifetime = 5f;
 	[Export] public float padding = 10f;
 
-	private float lifetime = 0f;
+	private float lifeTime = 0f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -19,23 +20,18 @@ public partial class RangedPing : Area2D
 	public override void _Process(double delta)
 	{
 		Position += direction * speed * (float)delta;
-		lifetime += (float)delta;
+		lifeTime += (float)delta;
 
 		//might need to run this check seperately elsewhere
-		if (lifetime > maxLifetime)
+		if (lifeTime > maxLifetime)
 		{
 			QueueFree();
 		}
 	}
 
-	//private void OnBodyEntered(Node2D body)
-	//{
-	//	direction = Vector2.Zero;
-	//}
-
 	private void OnBodyShapeEntered(Rid body_rid, Node2D body, long body_shape_index, long local_shape_index)
 	{
-		if(body != GetParent())
+		if(body.IsInGroup("Terrain"))
 		{
 			Position -= direction * padding;
 			direction = Vector2.Zero;

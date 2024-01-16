@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=8 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSub.cs" id="1_mes06"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="2_opuqb"]
 [ext_resource type="Texture2D" uid="uid://c6aclvjhclai6" path="res://QuarterCircle.png" id="2_tl846"]
+[ext_resource type="Script" path="res://Scripts/Indicator.cs" id="4_lhgqj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b7g1o"]
 
@@ -51,33 +52,28 @@ target_position = Vector2(-300, 0)
 rotation = 0.785398
 
 [node name="NorthQuad" type="Sprite2D" parent="Indicators"]
-visible = false
-position = Vector2(-65, -65)
-scale = Vector2(0.5, 0.5)
+position = Vector2(-55, -55)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
+script = ExtResource("4_lhgqj")
 
 [node name="EastQuad" type="Sprite2D" parent="Indicators"]
-visible = false
-position = Vector2(65, -65)
+position = Vector2(55, -55)
 rotation = 1.5708
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
+script = ExtResource("4_lhgqj")
 
 [node name="SouthQuad" type="Sprite2D" parent="Indicators"]
-visible = false
-position = Vector2(65, 65)
+position = Vector2(55, 55)
 rotation = 3.14159
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
+script = ExtResource("4_lhgqj")
 
 [node name="WestQuad" type="Sprite2D" parent="Indicators"]
-visible = false
-position = Vector2(-65, 65)
+position = Vector2(-55, 55)
 rotation = -1.5708
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
-
-[node name="Pivot" type="Node2D" parent="."]
-
-[node name="SpawnPoint" type="Marker2D" parent="Pivot"]
-position = Vector2(100, 0)
+script = ExtResource("4_lhgqj")
