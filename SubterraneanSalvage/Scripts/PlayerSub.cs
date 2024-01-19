@@ -15,6 +15,7 @@ public partial class PlayerSub : CharacterBody2D
 	private Node2D indicators;
 
 	private float rangedPingTimer = rangedPingCoolDown;
+	private float pingHoldTime;
 
 	public override void _Ready()
 	{
@@ -69,9 +70,18 @@ public partial class PlayerSub : CharacterBody2D
 		Position += velocity.Normalized() * speed * speedMultiplier * (float)delta;
 
 		//pings around the sub, checking for nearby walls/objs/creatures
-		if (Input.IsActionJustPressed("Ping"))
+		//press and hol down for longer ping duration and range
+		//but louder sound
+		if (Input.IsActionPressed("Ping"))
 		{
-			SubPing();
+			pingHoldTime += (float)delta;
+			GD.Print(pingHoldTime);
+		}
+
+		if (Input.IsActionJustReleased("Ping"))
+		{
+			SubPing(pingHoldTime);
+			pingHoldTime = 0;
 		}
 
 		if (Input.IsActionJustPressed("FirePing"))
@@ -82,11 +92,28 @@ public partial class PlayerSub : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void SubPing()
+	public void SubPing(float timeHeld)
 	{
+		GD.Print(timeHeld);
 		RayCast2D ray;
 		Node2D indicatorPing;
-		for(int _i = 0;  _i <= rayCasts.GetChildCount() - 1; _i++)
+
+		if (timeHeld >= 5)
+		{
+			timeHeld = 5;
+		}
+		else if (timeHeld <= 1)
+		{
+			timeHeld = 1;
+		}
+
+		foreach (RayCast2D child in rayCasts.GetChildren())
+		{
+			child.TargetPosition *= timeHeld;
+			GD.Print(child.TargetPosition);
+		}
+
+		for (int _i = 0;  _i <= rayCasts.GetChildCount() - 1; _i++)
 		{
 			ray = (RayCast2D)rayCasts.GetChild(_i);
 			indicatorPing = (Node2D)indicators.GetChild(_i);
@@ -94,6 +121,7 @@ public partial class PlayerSub : CharacterBody2D
 			{
 				indicatorPing.SelfModulate = Color.Color8(255, 255, 255, 255);
 			}
+			ray.TargetPosition /= timeHeld;
 		}
 	}
 

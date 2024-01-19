@@ -6,7 +6,7 @@
 [node name="NavTest" type="Node2D"]
 
 [node name="PlayerSub" parent="." instance=ExtResource("1_acchm")]
-position = Vector2(310, 453)
+position = Vector2(257, 418)
 
 [node name="Brick" parent="." instance=ExtResource("2_6dof3")]
 position = Vector2(638, 10)

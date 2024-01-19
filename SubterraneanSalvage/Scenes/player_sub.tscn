@@ -16,6 +16,7 @@ height = 150.0
 [node name="PlayerSub" type="CharacterBody2D"]
 script = ExtResource("1_mes06")
 rangedPingObj = ExtResource("2_opuqb")
+metadata/_edit_group_ = true
 
 [node name="SubBody" type="Node2D" parent="."]
 
@@ -37,16 +38,16 @@ shape = SubResource("CapsuleShape2D_wvhhy")
 [node name="Raycasts" type="Node2D" parent="."]
 
 [node name="NorthCast" type="RayCast2D" parent="Raycasts"]
-target_position = Vector2(0, -300)
+target_position = Vector2(0, -150)
 
 [node name="EastCast" type="RayCast2D" parent="Raycasts"]
-target_position = Vector2(300, 0)
+target_position = Vector2(150, 0)
 
 [node name="SouthCast" type="RayCast2D" parent="Raycasts"]
-target_position = Vector2(0, 300)
+target_position = Vector2(0, 150)
 
 [node name="WestCast" type="RayCast2D" parent="Raycasts"]
-target_position = Vector2(-300, 0)
+target_position = Vector2(-150, 0)
 
 [node name="Indicators" type="Node2D" parent="."]
 rotation = 0.785398
