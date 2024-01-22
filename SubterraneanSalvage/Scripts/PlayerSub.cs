@@ -9,6 +9,8 @@ public partial class PlayerSub : CharacterBody2D
 	[Export] public const float pingCoolDown = 3f;
 	[Export] public const float rangedPingCoolDown = 5f;
 	[Export] public PackedScene rangedPingObj;
+	public float minPingTime = 1f;
+	public float maxPingTime = 5f;
 
 	private Node2D subBody;
 	private Node2D rayCasts;
@@ -94,34 +96,26 @@ public partial class PlayerSub : CharacterBody2D
 
 	public void SubPing(float timeHeld)
 	{
-		GD.Print(timeHeld);
-		RayCast2D ray;
-		Node2D indicatorPing;
+		GD.Print("held for " + timeHeld);
 
-		if (timeHeld >= 5)
+		if (timeHeld >= maxPingTime)
 		{
-			timeHeld = 5;
+			timeHeld = maxPingTime;
 		}
-		else if (timeHeld <= 1)
+		else if (timeHeld <= minPingTime)
 		{
-			timeHeld = 1;
+			timeHeld = minPingTime;
+		}
+		else
+		{
+			timeHeld = (float)Math.Round(timeHeld);
+			GD.Print(timeHeld + " abs");
 		}
 
 		foreach (RayCast2D child in rayCasts.GetChildren())
 		{
-			child.TargetPosition *= timeHeld;
-			GD.Print(child.TargetPosition);
-		}
-
-		for (int _i = 0;  _i <= rayCasts.GetChildCount() - 1; _i++)
-		{
-			ray = (RayCast2D)rayCasts.GetChild(_i);
-			indicatorPing = (Node2D)indicators.GetChild(_i);
-			if (ray.IsColliding())
-			{
-				indicatorPing.SelfModulate = Color.Color8(255, 255, 255, 255);
-			}
-			ray.TargetPosition /= timeHeld;
+			RayScript childScript = child as RayScript;
+			childScript.SetRange(timeHeld);
 		}
 	}
 
