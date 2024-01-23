@@ -116,6 +116,7 @@ public partial class PlayerSub : CharacterBody2D
 		{
 			RayScript childScript = child as RayScript;
 			childScript.SetRange(timeHeld);
+			childScript.CheckCast();
 		}
 	}
 

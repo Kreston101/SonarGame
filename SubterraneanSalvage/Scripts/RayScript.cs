@@ -16,7 +16,7 @@ public partial class RayScript : RayCast2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		CheckCast();
+
     }
 
 	public void SetRange(float _pingHeldTime)
@@ -28,18 +28,19 @@ public partial class RayScript : RayCast2D
 
 	public void CheckCast()
 	{
+		ForceRaycastUpdate();
         if (IsColliding())
         {
             linkedIndicator.SelfModulate = Color.Color8(255, 255, 255, 255);
             Indicator indicatorScript = linkedIndicator as Indicator;
             indicatorScript.pingLifeTime = pingHeldTime;
             indicatorScript.active = true;
-			//TargetPosition = minRange;
+			TargetPosition = minRange;
         }
 		else
 		{
 			GD.Print("nothing");
-			//TargetPosition = minRange;
+			TargetPosition = minRange;
 		}
     }
 }
