@@ -3,11 +3,11 @@ Concept test
 
 Todo list:
 - [x] Movement system
-- [ ] Sonar system
+- [x] Sonar system
   - [x] Basic ping
-  - [ ] Charge basic ping
-  - [ ] Ranging ping
-  - [ ] Ping expiration timers
+  - [x] Charge basic ping
+  - [x] Ranging ping
+  - [x] Ping expiration timers
 - [ ] Oxygen system
 - [ ] Enemies/Obstacles
 - [ ] Health and damage
