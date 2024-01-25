@@ -1,24 +1,105 @@
-[gd_scene load_steps=3 format=3 uid="uid://c6b5y1pp316ei"]
+[gd_scene load_steps=8 format=3 uid="uid://c6b5y1pp316ei"]
 
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
+[ext_resource type="Script" path="res://Scripts/OxyTest.cs" id="1_sv5jh"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_6dof3"]
+
+[sub_resource type="Gradient" id="Gradient_eoint"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kgav"]
+gradient = SubResource("Gradient_eoint")
+width = 433
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_n1mmo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x4fds"]
+gradient = SubResource("Gradient_n1mmo")
 
 [node name="NavTest" type="Node2D"]
 
-[node name="PlayerSub" parent="." instance=ExtResource("1_acchm")]
-position = Vector2(756, 229)
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("OxyTimer", "OxyBar")]
+script = ExtResource("1_sv5jh")
+OxyTimer = NodePath("OxygenTimer")
+OxyBar = NodePath("OxygenBar")
 
-[node name="Brick" parent="." instance=ExtResource("2_6dof3")]
-position = Vector2(638, 10)
+[node name="OxygenTimer" type="Timer" parent="CanvasLayer"]
+wait_time = 180.0
+one_shot = true
+autostart = true
 
-[node name="StaticBody2D" parent="." instance=ExtResource("2_6dof3")]
-position = Vector2(1075, 196)
-rotation = -0.47822
+[node name="OxygenBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_left = 14.0
+offset_top = 14.0
+offset_right = 447.0
+offset_bottom = 46.0
+max_value = 180.0
+step = 0.0
+value = 180.0
+texture_progress = SubResource("GradientTexture2D_1kgav")
 
-[node name="StaticBody2D2" parent="." instance=ExtResource("2_6dof3")]
-position = Vector2(342, 653)
+[node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("1_acchm")]
+position = Vector2(578, 326)
+HealthBar = NodePath("../CanvasLayer")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="PlayerSub"]
+metadata/_edit_lock_ = true
+
+[node name="DebugBg" type="Sprite2D" parent="PlayerSub/Camera2D"]
+z_index = -1
+position = Vector2(1.5, -2)
+scale = Vector2(4.49609, 646)
+texture = SubResource("GradientTexture1D_x4fds")
+metadata/_edit_lock_ = true
+
+[node name="StaticObjs" type="Node2D" parent="."]
+
+[node name="Brick" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(357, 83)
+rotation = -0.359538
+scale = Vector2(9.02, 1)
+
+[node name="StaticBody2D" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(1085, 125)
+rotation = -2.75238
+scale = Vector2(8.66, 1)
+
+[node name="StaticBody2D2" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(1370, 591)
+rotation = 1.71392
 scale = Vector2(7.535, 1)
 
-[node name="StaticBody2D3" parent="." instance=ExtResource("2_6dof3")]
+[node name="StaticBody2D3" parent="StaticObjs" instance=ExtResource("2_6dof3")]
 position = Vector2(-17, 394)
 scale = Vector2(1, 4.7)
+
+[node name="StaticBody2D4" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(408, 734)
+rotation = 0.261799
+scale = Vector2(10.646, 1)
+
+[node name="StaticBody2D5" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(806, 1652)
+rotation = -0.0733038
+scale = Vector2(19.715, 1)
+
+[node name="StaticBody2D6" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(20, 1356)
+rotation = 0.204204
+scale = Vector2(1, 7.185)
+
+[node name="StaticBody2D7" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(500, 993)
+rotation = -0.139626
+scale = Vector2(7.27, 1)
+
+[node name="StaticBody2D8" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(1598, 1168)
+rotation = -0.322886
+scale = Vector2(1, 11.05)

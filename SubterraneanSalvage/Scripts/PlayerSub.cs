@@ -4,17 +4,20 @@ using static System.Net.Mime.MediaTypeNames;
 
 public partial class PlayerSub : CharacterBody2D
 {
-	public float speed = 300.0f;
+	[Export] public float speed = 300.0f;
 	[Export] public float speedMultiplier = 1f;
 	[Export] public const float pingCoolDown = 3f;
 	[Export] public const float rangedPingCoolDown = 5f;
 	[Export] public PackedScene rangedPingObj;
+
+	//temp until level manager
+	[Export] public Node HealthBar;
+
 	public float minPingTime = 1f;
 	public float maxPingTime = 5f;
 
 	private Node2D subBody;
 	private Node2D rayCasts;
-	private Node2D indicators;
 
 	private float rangedPingTimer = rangedPingCoolDown;
 	private float pingHoldTime;
@@ -23,7 +26,6 @@ public partial class PlayerSub : CharacterBody2D
 	{
 		subBody = (Node2D)GetNode("SubBody");
 		rayCasts = (Node2D)GetNode("Raycasts");
-		indicators = (Node2D)GetNode("Indicators");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -91,7 +93,12 @@ public partial class PlayerSub : CharacterBody2D
 			RangedPing();
 		}
 
-		MoveAndSlide();
+		//handle collision damage
+		if (MoveAndSlide())
+		{
+			OxyTest oxyTestScript = HealthBar as OxyTest;
+			oxyTestScript.DepleteOxy();
+		}
 	}
 
 	public void SubPing(float timeHeld)

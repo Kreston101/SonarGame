@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=9 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSub.cs" id="1_mes06"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="2_opuqb"]
@@ -13,8 +13,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvhhy"]
 radius = 37.0
 height = 150.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_l7xw0"]
 
 [node name="PlayerSub" type="CharacterBody2D"]
 script = ExtResource("1_mes06")
@@ -40,22 +38,22 @@ shape = SubResource("CapsuleShape2D_wvhhy")
 [node name="Raycasts" type="Node2D" parent="."]
 
 [node name="NorthCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -200)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/NorthQuad")
 
 [node name="EastCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(150, 0)
+target_position = Vector2(200, 0)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/EastQuad")
 
 [node name="SouthCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(0, 150)
+target_position = Vector2(0, 200)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/SouthQuad")
 
 [node name="WestCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(-150, 0)
+target_position = Vector2(-200, 0)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/WestQuad")
 
@@ -88,28 +86,3 @@ rotation = -1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
 script = ExtResource("4_lhgqj")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(150, 0)
-scale = Vector2(25.5283, 25.5283)
-mesh = SubResource("SphereMesh_l7xw0")
-
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="."]
-position = Vector2(300, 0)
-scale = Vector2(25.5283, 25.5283)
-mesh = SubResource("SphereMesh_l7xw0")
-
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="."]
-position = Vector2(450, 0)
-scale = Vector2(25.5283, 25.5283)
-mesh = SubResource("SphereMesh_l7xw0")
-
-[node name="MeshInstance2D4" type="MeshInstance2D" parent="."]
-position = Vector2(600, 0)
-scale = Vector2(25.5283, 25.5283)
-mesh = SubResource("SphereMesh_l7xw0")
-
-[node name="MeshInstance2D5" type="MeshInstance2D" parent="."]
-position = Vector2(750, 0)
-scale = Vector2(25.5283, 25.5283)
-mesh = SubResource("SphereMesh_l7xw0")
