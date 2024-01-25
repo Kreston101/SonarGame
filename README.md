@@ -3,18 +3,22 @@ Concept test
 
 Todo list:
 - [x] Movement system
-- [ ] Sonar system
+  - [ ] Movements make sound
+- [x] Sonar system
   - [x] Basic ping
-  - [ ] Charge basic ping
-  - [ ] Ranging ping
-  - [ ] Ping expiration timers
-- [ ] Oxygen system
+  - [x] Charge basic ping
+  - [x] Ranging ping
+  - [x] Ping expiration timers
+- [ ] Oxygen/health system
 - [ ] Enemies/Obstacles
-- [ ] Health and damage
+  - [ ] Passive creature
+  - [ ] Patroling enemy
+  - [ ] Enemy that wakes up
 - [ ] 3-5 playable levels
 - [ ] Hostile entity
 
 Finish core mechanic by 12/01/24 (1-3)
+- [x] Visuals exist
 
 Potentially todo:
 - [ ] Side objectives
