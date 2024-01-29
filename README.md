@@ -9,7 +9,9 @@ Todo list:
   - [x] Charge basic ping
   - [x] Ranging ping
   - [x] Ping expiration timers
+  - [ ] Passive Sonar
 - [ ] Oxygen/health system
+  - [x] Stand in system
 - [ ] Enemies/Obstacles
   - [ ] Passive creature
   - [ ] Patroling enemy
