@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6b5y1pp316ei"]
+[gd_scene load_steps=10 format=3 uid="uid://c6b5y1pp316ei"]
 
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
 [ext_resource type="Script" path="res://Scripts/OxyTest.cs" id="1_sv5jh"]
@@ -19,6 +19,11 @@ colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x4fds"]
 gradient = SubResource("Gradient_n1mmo")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g03st"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_62evn"]
+size = Vector2(60, 60)
 
 [node name="NavTest" type="Node2D"]
 
@@ -103,3 +108,13 @@ scale = Vector2(7.27, 1)
 position = Vector2(1598, 1168)
 rotation = -0.322886
 scale = Vector2(1, 11.05)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(204, 444)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Area2D"]
+scale = Vector2(60, 60)
+mesh = SubResource("BoxMesh_g03st")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_62evn")

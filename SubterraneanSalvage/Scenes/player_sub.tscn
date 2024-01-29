@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=10 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSub.cs" id="1_mes06"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="2_opuqb"]
@@ -13,6 +13,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wvhhy"]
 radius = 37.0
 height = 150.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7037y"]
 
 [node name="PlayerSub" type="CharacterBody2D"]
 script = ExtResource("1_mes06")
@@ -86,3 +88,12 @@ rotation = -1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
 script = ExtResource("4_lhgqj")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7037y")
+debug_color = Color(1, 0, 0.145098, 0.419608)
+
+[connection signal="area_entered" from="Area2D" to="." method="TestArea"]

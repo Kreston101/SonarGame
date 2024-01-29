@@ -142,4 +142,9 @@ public partial class PlayerSub : CharacterBody2D
 			}
 		}
 	}
+
+	private void TestArea(Area2D area)
+	{
+		GD.Print("detection");
+	}
 }
