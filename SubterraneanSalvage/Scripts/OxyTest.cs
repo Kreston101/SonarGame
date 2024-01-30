@@ -20,7 +20,7 @@ public partial class OxyTest : CanvasLayer
 	public void DepleteOxy()
 	{
 		GD.Print("lost oxygen");
-		OxyTimer.Start(OxyTimer.TimeLeft - 30f);
+		OxyTimer.Start(OxyTimer.TimeLeft - 10f);
 		//hard value for now
 		//actual value is, Sub speed * punishmentAmount
 		//punishmentAmount, fixed time to loose in seconds, earlier stages, more forgiving

@@ -98,7 +98,8 @@ public partial class PlayerSub : CharacterBody2D
 		{
 			OxyTest oxyTestScript = HealthBar as OxyTest;
 			oxyTestScript.DepleteOxy();
-		}
+			Position -= velocity.Normalized() * 50;
+        }
 	}
 
 	public void SubPing(float timeHeld)
