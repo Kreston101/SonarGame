@@ -15,6 +15,7 @@ radius = 37.0
 height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7037y"]
+radius = 12.4504
 
 [node name="PlayerSub" type="CharacterBody2D"]
 script = ExtResource("1_mes06")
@@ -40,22 +41,22 @@ shape = SubResource("CapsuleShape2D_wvhhy")
 [node name="Raycasts" type="Node2D" parent="."]
 
 [node name="NorthCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(0, -200)
+target_position = Vector2(0, -250)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/NorthQuad")
 
 [node name="EastCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(200, 0)
+target_position = Vector2(250, 0)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/EastQuad")
 
 [node name="SouthCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(0, 200)
+target_position = Vector2(0, 250)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/SouthQuad")
 
 [node name="WestCast" type="RayCast2D" parent="Raycasts" node_paths=PackedStringArray("linkedIndicator")]
-target_position = Vector2(-200, 0)
+target_position = Vector2(-250, 0)
 script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/WestQuad")
 
@@ -94,6 +95,7 @@ scale = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveSonar"]
 shape = SubResource("CircleShape2D_7037y")
+one_way_collision_margin = 0.0
 debug_color = Color(1, 0, 0.145098, 0.419608)
 
 [connection signal="area_entered" from="PassiveSonar" to="." method="TestArea"]

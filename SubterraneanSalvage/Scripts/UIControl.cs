@@ -1,11 +1,12 @@
 using Godot;
 using System;
 
-public partial class OxyTest : CanvasLayer
+public partial class UIControl : CanvasLayer
 {
 	[Export] Timer OxyTimer;
 	[Export] TextureProgressBar OxyBar;
 	[Export] ColorRect redTint;
+	[Export] Label lvlClear;
 
 	private float timer = 0;
 	private Color red = new Color(1, 0, 0, 0.34f);
@@ -15,6 +16,7 @@ public partial class OxyTest : CanvasLayer
 	public override void _Ready()
 	{
 		redTint.Color = clear;
+		lvlClear.Hide();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,5 +37,10 @@ public partial class OxyTest : CanvasLayer
 		//think of it as hull damage due to pressure change
 		//does that make sense?
 		//the screen goes RED, remember
+	}
+
+	private void OnEndPointEntered(Node2D body)
+	{
+		lvlClear.Show();
 	}
 }

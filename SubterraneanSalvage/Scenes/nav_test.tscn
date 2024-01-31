@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6b5y1pp316ei"]
 
-[ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://ui_scene.tscn" id="1_117b1"]
+[ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_117b1"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_6dof3"]
 [ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="4_hks8v"]
 
-[sub_resource type="Gradient" id="Gradient_n1mmo"]
+[sub_resource type="Gradient" id="Gradient_v271l"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_x4fds"]
-gradient = SubResource("Gradient_n1mmo")
+gradient = SubResource("Gradient_v271l")
 
 [node name="NavTest" type="Node2D"]
 
