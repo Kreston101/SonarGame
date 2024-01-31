@@ -96,8 +96,9 @@ public partial class PlayerSub : CharacterBody2D
 		//handle collision damage
 		if (MoveAndSlide())
 		{
-			OxyTest oxyTestScript = HealthBar as OxyTest;
+			UIControl oxyTestScript = HealthBar as UIControl;
 			oxyTestScript.DepleteOxy();
+			Position -= velocity.Normalized() * 50;
 		}
 	}
 
@@ -141,5 +142,10 @@ public partial class PlayerSub : CharacterBody2D
 				rangedPingTimer = 0;
 			}
 		}
+	}
+
+	private void TestArea(Area2D area)
+	{
+		GD.Print("detection");
 	}
 }

@@ -23,7 +23,7 @@ public partial class RayScript : RayCast2D
 	{
 		pingHeldTime = _pingHeldTime;
 		TargetPosition *= _pingHeldTime;
-		GD.Print("raycasting to "+TargetPosition);
+		GD.Print("raycasting to " + TargetPosition);
 	}
 
 	public void CheckCast()

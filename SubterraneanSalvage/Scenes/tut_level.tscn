@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch8njdwl883wa"]
+
+[ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
+[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_d7vbf"]
+[ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
+[ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="4_eviks"]
+
+[sub_resource type="Gradient" id="Gradient_n1mmo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3bvth"]
+gradient = SubResource("Gradient_n1mmo")
+
+[node name="TutLevel" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
+
+[node name="Layout" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(-399, 169)
+rotation = 0.287979
+scale = Vector2(1, 11.355)
+
+[node name="StaticBody2D2" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(142, -334)
+scale = Vector2(7.235, 1)
+
+[node name="StaticBody2D3" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(567, -65)
+rotation = -0.359538
+scale = Vector2(1, 6.32)
+
+[node name="StaticBody2D4" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(111, 820)
+rotation = 0.120428
+scale = Vector2(13.63, 1)
+
+[node name="StaticBody2D5" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(1135, 336)
+rotation = 0.23911
+scale = Vector2(10.215, 1)
+
+[node name="StaticBody2D6" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(1302, 924)
+rotation = 0.0383972
+scale = Vector2(11.2, 1)
+
+[node name="StaticBody2D7" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(2110, 404)
+rotation = -0.120428
+scale = Vector2(9.925, 1)
+
+[node name="StaticBody2D8" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(2767, -9.15527e-05)
+rotation = 0.479966
+scale = Vector2(1, 8.375)
+
+[node name="StaticBody2D9" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(3389, -319)
+rotation = 0.127409
+scale = Vector2(8.49, 1)
+
+[node name="StaticBody2D10" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(3945, 102)
+rotation = -0.359538
+scale = Vector2(1, 8.125)
+
+[node name="StaticBody2D11" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(3642, 686)
+rotation = -0.47822
+scale = Vector2(9.935, 1)
+
+[node name="StaticBody2D12" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(1726, 1502)
+rotation = 0.23911
+scale = Vector2(1, 11.635)
+
+[node name="StaticBody2D13" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(2591, 1566)
+rotation = 0.118682
+scale = Vector2(1, 11.635)
+
+[node name="StaticBody2D14" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(2963, 969)
+rotation = -0.244346
+scale = Vector2(5.785, 1)
+
+[node name="StaticBody2D15" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(1302, 2086)
+rotation = -0.120428
+scale = Vector2(6.365, 1)
+
+[node name="StaticBody2D16" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(820, 2356)
+rotation = 0.598648
+scale = Vector2(1, 5.81)
+
+[node name="StaticBody2D17" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(727, 2868)
+rotation = -0.23911
+scale = Vector2(1, 5.585)
+
+[node name="StaticBody2D18" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(1477, 3250)
+rotation = 0.120428
+scale = Vector2(13.405, 1)
+
+[node name="StaticBody2D19" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(2784, 3256)
+rotation = -0.118682
+scale = Vector2(13.195, 1)
+
+[node name="StaticBody2D20" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(3098, 2400)
+rotation = 0.479966
+scale = Vector2(13.01, 1)
+
+[node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("3_bep4k")]
+HealthBar = NodePath("../CanvasLayer")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerSub"]
+metadata/_edit_lock_ = true
+
+[node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
+z_index = -1
+position = Vector2(1.5, -2)
+scale = Vector2(4.49609, 646)
+texture = SubResource("GradientTexture1D_3bvth")
+metadata/_edit_lock_ = true
+
+[node name="EndPoint" parent="." instance=ExtResource("4_eviks")]
+position = Vector2(3452, 2918)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_d7vbf")]
+position = Vector2(3577, 2968)
+rotation = 0.392699
+scale = Vector2(1, 5.145)
+
+[connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]

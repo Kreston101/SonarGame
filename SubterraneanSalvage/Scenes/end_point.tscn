@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://mtyfej00peu7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_sngf8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0veqi"]
+radius = 50.04
+
+[node name="EndPoint" type="Area2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(100, 100)
+mesh = SubResource("SphereMesh_sngf8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0veqi")
+debug_color = Color(0.34902, 0.619608, 0, 0.419608)
