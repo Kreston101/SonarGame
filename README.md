@@ -9,11 +9,11 @@ Todo list:
   - [x] Charge basic ping
   - [x] Ranging ping
   - [x] Ping expiration timers
-  - [ ] Passive Sonar
-- [ ] Oxygen/health system
+  - [x] Passive Sonar
+- [x] Oxygen/health system
   - [x] Stand in system
 - [ ] Enemies/Obstacles
-  - [ ] Passive creature
+  - [x] Passive creature
   - [ ] Patroling enemy
   - [ ] Enemy that wakes up
 - [ ] 3-5 playable levels
