@@ -125,6 +125,7 @@ HealthBar = NodePath("../CanvasLayer")
 metadata/_edit_lock_ = true
 
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
+visible = false
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
