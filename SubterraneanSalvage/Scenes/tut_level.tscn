@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=8 format=3 uid="uid://ch8njdwl883wa"]
 
+[ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_d7vbf"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
@@ -12,7 +13,15 @@ colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3bvth"]
 gradient = SubResource("Gradient_n1mmo")
 
-[node name="TutLevel" type="Node2D"]
+[node name="TutLevel" type="Node2D" node_paths=PackedStringArray("player", "endPoint", "UI", "oxyTimer")]
+script = ExtResource("1_ewlfb")
+player = NodePath("PlayerSub")
+endPoint = NodePath("EndPoint")
+UI = NodePath("CanvasLayer")
+oxyTimer = NodePath("CanvasLayer/OxygenTimer")
+oxyLossRate = 5
+levelNum = 1
+stageOxy = 180.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
 
@@ -118,6 +127,11 @@ position = Vector2(3098, 2400)
 rotation = 0.479966
 scale = Vector2(13.01, 1)
 
+[node name="StaticBody2D21" parent="Layout" instance=ExtResource("2_d7vbf")]
+position = Vector2(3577, 2968)
+rotation = 0.392699
+scale = Vector2(1, 5.145)
+
 [node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("3_bep4k")]
 HealthBar = NodePath("../CanvasLayer")
 
@@ -135,9 +149,7 @@ metadata/_edit_lock_ = true
 [node name="EndPoint" parent="." instance=ExtResource("4_eviks")]
 position = Vector2(3452, 2918)
 
-[node name="StaticBody2D" parent="." instance=ExtResource("2_d7vbf")]
-position = Vector2(3577, 2968)
-rotation = 0.392699
-scale = Vector2(1, 5.145)
-
+[connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]
+
+[editable path="CanvasLayer"]

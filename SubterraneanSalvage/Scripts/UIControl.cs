@@ -3,10 +3,13 @@ using System;
 
 public partial class UIControl : CanvasLayer
 {
-	[Export] Timer OxyTimer;
-	[Export] TextureProgressBar OxyBar;
+	[Export] Timer oxyTimer;
+	[Export] TextureProgressBar oxyBar;
 	[Export] ColorRect redTint;
 	[Export] Label lvlClear;
+	[Export] Label gameOver;
+	public int punishment;
+	public float playerSpeed;
 
 	private float timer = 0;
 	private Color red = new Color(1, 0, 0, 0.34f);
@@ -17,30 +20,43 @@ public partial class UIControl : CanvasLayer
 	{
 		redTint.Color = clear;
 		lvlClear.Hide();
+		gameOver.Hide();
+		oxyBar.MaxValue = oxyTimer.WaitTime;
+		oxyBar.Value = oxyBar.MaxValue;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		OxyBar.Value = OxyTimer.TimeLeft;
+		oxyBar.Value = oxyTimer.TimeLeft;
 		redTint.Color = redTint.Color.Lerp(clear, 0.1f);
 	}
 
 	public void DepleteOxy()
 	{
 		GD.Print("lost oxygen");
-		OxyTimer.Start(OxyTimer.TimeLeft - 10f);
+		if(oxyTimer.TimeLeft - (playerSpeed * punishment) > 0)
+		{
+			oxyTimer.Start(oxyTimer.TimeLeft - (playerSpeed * punishment));
+		}
+		else
+		{
+			oxyTimer.Stop();
+			oxyBar.Value = 0;
+			OnOxygenTimerTimeout();
+			LevelManager parent = GetParent() as LevelManager;
+			parent.ForceTimeout();
+		}
 		redTint.Color = red;
-		//hard value for now
-		//actual value is, Sub speed * punishmentAmount
-		//punishmentAmount, fixed time to loose in seconds, earlier stages, more forgiving
-		//think of it as hull damage due to pressure change
-		//does that make sense?
-		//the screen goes RED, remember
 	}
 
 	private void OnEndPointEntered(Node2D body)
 	{
 		lvlClear.Show();
+	}
+
+	private void OnOxygenTimerTimeout()
+	{
+		gameOver.Show();
 	}
 }

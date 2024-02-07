@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="2_opuqb"]
 [ext_resource type="Texture2D" uid="uid://c6aclvjhclai6" path="res://QuarterCircle.png" id="2_tl846"]
 [ext_resource type="Script" path="res://Scripts/RayScript.cs" id="3_0qcv2"]
-[ext_resource type="PackedScene" path="res://Scenes/area_ping.tscn" id="3_4xmwk"]
+[ext_resource type="PackedScene" uid="uid://dfwucofmggw41" path="res://Scenes/area_ping.tscn" id="3_4xmwk"]
 [ext_resource type="Script" path="res://Scripts/Indicator.cs" id="4_lhgqj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b7g1o"]

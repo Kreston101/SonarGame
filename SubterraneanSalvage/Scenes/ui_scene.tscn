@@ -11,12 +11,13 @@ gradient = SubResource("Gradient_eoint")
 width = 433
 height = 32
 
-[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("OxyTimer", "OxyBar", "redTint", "lvlClear")]
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("oxyTimer", "oxyBar", "redTint", "lvlClear", "gameOver")]
 script = ExtResource("1_ixqs0")
-OxyTimer = NodePath("OxygenTimer")
-OxyBar = NodePath("OxygenBar")
+oxyTimer = NodePath("OxygenTimer")
+oxyBar = NodePath("OxygenBar")
 redTint = NodePath("RedTint")
 lvlClear = NodePath("LvlClear")
+gameOver = NodePath("GameOver")
 
 [node name="RedTint" type="ColorRect" parent="."]
 anchors_preset = 8
@@ -35,7 +36,6 @@ color = Color(1, 0, 0, 0.341176)
 [node name="OxygenTimer" type="Timer" parent="."]
 wait_time = 180.0
 one_shot = true
-autostart = true
 
 [node name="OxygenBar" type="TextureProgressBar" parent="."]
 offset_left = 14.0
@@ -64,3 +64,22 @@ text = "Level Clear
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="GameOver" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -142.5
+offset_top = -105.01
+offset_right = 140.5
+offset_bottom = -31.0099
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 54
+text = "Drowned"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="OxygenTimer" to="." method="OnOxygenTimerTimeout"]
