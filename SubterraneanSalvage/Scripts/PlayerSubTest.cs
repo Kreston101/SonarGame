@@ -150,8 +150,8 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 	}
 
-	private void TestArea(Area2D area)
+	private void SonarArea(Area2D area)
 	{
-		//GD.Print("detection");
+		GD.Print("detection" + area.Name);
 	}
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=12 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSubTest.cs" id="1_ulhf7"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="2_opuqb"]
@@ -17,6 +17,9 @@ height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7037y"]
 radius = 12.4504
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0pbd"]
+radius = 412.205
 
 [node name="PlayerSub" type="CharacterBody2D"]
 script = ExtResource("1_ulhf7")
@@ -92,12 +95,16 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
 script = ExtResource("4_lhgqj")
 
-[node name="PassiveSonar" type="Area2D" parent="."]
+[node name="PassiveSonar" type="Area2D" parent="." groups=["PassiveSonar"]]
 scale = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveSonar"]
 shape = SubResource("CircleShape2D_7037y")
 one_way_collision_margin = 0.0
-debug_color = Color(1, 0, 0.145098, 0.419608)
+debug_color = Color(0.14902, 0.647059, 0, 0.419608)
 
-[connection signal="area_entered" from="PassiveSonar" to="." method="TestArea"]
+[node name="NoiseArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseArea"]
+shape = SubResource("CircleShape2D_x0pbd")
+debug_color = Color(0.996078, 0, 0.211765, 0.419608)

@@ -9,6 +9,7 @@ public partial class AreaPing : Area2D
 	public Vector2 direction;
 	public float maxLifetime = 1f;
 	[Export] public float padding = 10f;
+	public Vector2 origin;
 
 	private float lifeTime = 0f;
 	private Color clear = new Color(1, 1, 1, 0);
@@ -16,6 +17,7 @@ public partial class AreaPing : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		origin = Position;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +43,15 @@ public partial class AreaPing : Area2D
 		{
 			Position -= direction * padding;
 			direction = Vector2.Zero;
+		}
+	}
+
+	private void OnAreaEntered(Area2D area)
+	{
+		if (area.IsInGroup("Hostile"))
+		{
+			//send position
+			//set enemy in track mode
 		}
 	}
 }

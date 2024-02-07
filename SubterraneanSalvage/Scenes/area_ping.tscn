@@ -18,4 +18,5 @@ mesh = SubResource("SphereMesh_x03l1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_cx8ae")
 
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="body_shape_entered" from="." to="." method="OnBodyShapeEntered"]

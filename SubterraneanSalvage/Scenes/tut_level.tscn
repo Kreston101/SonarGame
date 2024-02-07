@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=12 format=3 uid="uid://ch8njdwl883wa"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_d7vbf"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="4_eviks"]
+[ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="6_6vr8d"]
 
 [sub_resource type="Gradient" id="Gradient_n1mmo"]
 offsets = PackedFloat32Array(0)
@@ -12,6 +13,24 @@ colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_3bvth"]
 gradient = SubResource("Gradient_n1mmo")
+
+[sub_resource type="Curve2D" id="Curve2D_q84tl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_k61e5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_1oni8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
 
 [node name="TutLevel" type="Node2D" node_paths=PackedStringArray("player", "endPoint", "UI", "oxyTimer")]
 script = ExtResource("1_ewlfb")
@@ -148,6 +167,57 @@ metadata/_edit_lock_ = true
 
 [node name="EndPoint" parent="." instance=ExtResource("4_eviks")]
 position = Vector2(3452, 2918)
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(1058, 2588)
+curve = SubResource("Curve2D_q84tl")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School1" parent="Path2D2/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
+position = Vector2(0.482544, 0.875916)
+rotation = 2.6381
+scale = Vector2(1, 1)
+followPath = NodePath("..")
+speed = 100.0
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(1064, 2728)
+curve = SubResource("Curve2D_k61e5")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School1" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
+position = Vector2(0.482544, 0.875916)
+rotation = 2.6381
+scale = Vector2(1, 1)
+followPath = NodePath("..")
+speed = 100.0
+
+[node name="Path2D3" type="Path2D" parent="."]
+position = Vector2(1185, 2733)
+curve = SubResource("Curve2D_1oni8")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School1" parent="Path2D3/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
+position = Vector2(0.482544, 0.875916)
+rotation = 2.6381
+scale = Vector2(1, 1)
+followPath = NodePath("..")
+speed = 100.0
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]
