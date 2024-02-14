@@ -5,14 +5,15 @@
 [sub_resource type="SphereMesh" id="SphereMesh_x03l1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cx8ae"]
-radius = 12.0
+radius = 9.05539
 
 [node name="AreaPing" type="Area2D"]
 script = ExtResource("1_p8nhk")
-speed = 1000.0
+speed = 750.0
+padding = 15.0
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(24, 24)
+scale = Vector2(18, 18)
 mesh = SubResource("SphereMesh_x03l1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

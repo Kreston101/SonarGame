@@ -131,7 +131,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			GD.Print(timeHeld + " abs");
 		}
 
-		for (int i = 1; i <= 12; i++)
+		for (int i = 1; i <= 24; i++)
 		{
 			Node2D ping = (Node2D)areaPingObj.Instantiate();
 			AddSibling(ping);
@@ -139,7 +139,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			AreaPing pingObjScript = ping as AreaPing;
 			pingObjScript.maxLifetime = timeHeld;
 			GD.Print(pingObjScript.maxLifetime);
-			float angle = i * 0.52f;
+			float angle = i * 0.26f;
 			pingObjScript.direction = new Vector2(MathF.Cos(angle),MathF.Sin(angle));
 		}
 	}
