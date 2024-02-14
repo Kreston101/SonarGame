@@ -49,8 +49,8 @@ metadata/_edit_lock_ = true
 
 [node name="StaticBody2D" parent="Layout" instance=ExtResource("2_d7vbf")]
 position = Vector2(-399, 169)
-rotation = 0.287979
-scale = Vector2(1, 11.355)
+rotation = -1.31598
+scale = Vector2(11.355, 1)
 
 [node name="StaticBody2D2" parent="Layout" instance=ExtResource("2_d7vbf")]
 position = Vector2(142, -334)
@@ -58,8 +58,8 @@ scale = Vector2(7.235, 1)
 
 [node name="StaticBody2D3" parent="Layout" instance=ExtResource("2_d7vbf")]
 position = Vector2(567, -65)
-rotation = -0.359538
-scale = Vector2(1, 6.32)
+rotation = 1.1973
+scale = Vector2(6.32, 1)
 
 [node name="StaticBody2D4" parent="Layout" instance=ExtResource("2_d7vbf")]
 position = Vector2(111, 820)
@@ -158,7 +158,6 @@ HealthBar = NodePath("../CanvasLayer")
 metadata/_edit_lock_ = true
 
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
-visible = false
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
@@ -181,7 +180,6 @@ rotates = false
 [node name="School1" parent="Path2D2/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
 position = Vector2(0.482544, 0.875916)
 rotation = 2.6381
-scale = Vector2(1, 1)
 followPath = NodePath("..")
 speed = 100.0
 
@@ -198,7 +196,6 @@ rotates = false
 [node name="School1" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
 position = Vector2(0.482544, 0.875916)
 rotation = 2.6381
-scale = Vector2(1, 1)
 followPath = NodePath("..")
 speed = 100.0
 
@@ -215,7 +212,6 @@ rotates = false
 [node name="School1" parent="Path2D3/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
 position = Vector2(0.482544, 0.875916)
 rotation = 2.6381
-scale = Vector2(1, 1)
 followPath = NodePath("..")
 speed = 100.0
 

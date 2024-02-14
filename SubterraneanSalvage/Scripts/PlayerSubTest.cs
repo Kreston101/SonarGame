@@ -7,8 +7,8 @@ public partial class PlayerSubTest : CharacterBody2D
 	[Export] public float speed = 300.0f;
 	[Export] public float speedMultiplier = 1f;
 	[Export] public const float pingCoolDown = 3f;
-	[Export] public const float rangedPingCoolDown = 5f;
-	[Export] public PackedScene rangedPingObj;
+	//[Export] public const float rangedPingCoolDown = 5f;
+	//[Export] public PackedScene rangedPingObj;
 	[Export] public PackedScene areaPingObj;
 
 	//temp until level manager
@@ -20,7 +20,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	private Node2D subBody;
 	private Node2D rayCasts;
 
-	private float rangedPingTimer = rangedPingCoolDown;
+	//private float rangedPingTimer = rangedPingCoolDown;
 	private float pingHoldTime;
 
 	public override void _Ready()
@@ -31,30 +31,8 @@ public partial class PlayerSubTest : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		rangedPingTimer += (float)delta;
+		//rangedPingTimer += (float)delta;
 
-		//input control
-		Vector2 velocity = new Vector2();
-		if (Input.IsActionPressed("Left"))
-		{
-			velocity.X = -1;
-			subBody.Scale = new Vector2(-1, 1);
-		}
-		if (Input.IsActionPressed("Right"))
-		{
-			velocity.X = 1;
-			subBody.Scale = new Vector2(1, 1);
-		}
-		if (Input.IsActionPressed("Up"))
-		{
-			velocity.Y = -1;
-		}
-		if (Input.IsActionPressed("Down"))
-		{
-			velocity.Y = 1;
-		}
-
-		//speed control, faster is louder
 		if (Input.IsActionJustPressed("Speed+"))
 		{
 			if (speedMultiplier < 1.5f)
@@ -72,8 +50,6 @@ public partial class PlayerSubTest : CharacterBody2D
 			//GD.Print(speedMultiplier);
 		}
 
-		Position += velocity.Normalized() * speed * speedMultiplier * (float)delta;
-
 		//pings around the sub, checking for nearby walls/objs/creatures
 		//press and hold down for longer ping duration and range
 		//but louder sound
@@ -89,18 +65,35 @@ public partial class PlayerSubTest : CharacterBody2D
 			pingHoldTime = 0;
 		}
 
-		if (Input.IsActionJustPressed("FirePing"))
-		{
-			RangedPing();
-		}
+		//if (Input.IsActionJustPressed("FirePing"))
+		//{
+		//	RangedPing();
+		//}
+
+		//input control
+		GetInput();
 
 		//handle collision damage
 		if (MoveAndSlide())
 		{
-			UIControl oxyTestScript = HealthBar as UIControl;
-			oxyTestScript.DepleteOxy();
-			Position -= velocity.Normalized() * 50; //nudge the sub backwards
-		}
+            UIControl oxyTestScript = HealthBar as UIControl;
+            oxyTestScript.DepleteOxy();
+            Velocity = Vector2.Zero;
+        }
+	}
+
+	public void GetInput()
+	{
+		Vector2 inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
+		Velocity = inputDirection.Normalized() * speed * speedMultiplier;
+	}
+
+	public void ReleaseActions()
+	{
+		Input.ActionRelease("Left");
+		Input.ActionRelease("Right");
+		Input.ActionRelease("Up");
+		Input.ActionRelease("Down");
 	}
 
 	public void SubPing(float timeHeld)
@@ -134,24 +127,24 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 	}
 
-	public void RangedPing()
-	{
-		if (rangedPingTimer >= rangedPingCoolDown)
-		{
-			if (GetParent().GetNodeOrNull("RangedPing") == null)
-			{
-				Node2D ping = (Node2D)rangedPingObj.Instantiate();
-				AddSibling(ping);
-				ping.Position = GlobalPosition;
-				RangedPing pingObjScript = ping as RangedPing;
-				pingObjScript.direction = (GetGlobalMousePosition() - pingObjScript.GlobalPosition).Normalized();
-				rangedPingTimer = 0;
-			}
-		}
-	}
+	//public void RangedPing()
+	//{
+	//	if (rangedPingTimer >= rangedPingCoolDown)
+	//	{
+	//		if (GetParent().GetNodeOrNull("RangedPing") == null)
+	//		{
+	//			Node2D ping = (Node2D)rangedPingObj.Instantiate();
+	//			AddSibling(ping);
+	//			ping.Position = GlobalPosition;
+	//			RangedPing pingObjScript = ping as RangedPing;
+	//			pingObjScript.direction = (GetGlobalMousePosition() - pingObjScript.GlobalPosition).Normalized();
+	//			rangedPingTimer = 0;
+	//		}
+	//	}
+	//}
 
-	private void SonarArea(Area2D area)
-	{
-		GD.Print("detection" + area.Name);
-	}
+	//private void SonarArea(Area2D area)
+	//{
+	//	GD.Print("detection" + area.Name);
+	//}
 }
