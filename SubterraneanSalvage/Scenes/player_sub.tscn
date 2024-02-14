@@ -15,12 +15,12 @@ radius = 37.0
 height = 150.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7037y"]
-radius = 12.4504
+radius = 12.8062
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0pbd"]
-radius = 412.205
+radius = 192.0
 
-[node name="PlayerSub" type="CharacterBody2D"]
+[node name="PlayerSub" type="CharacterBody2D" node_paths=PackedStringArray("noiseArea")]
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 3.14159
@@ -28,10 +28,10 @@ floor_constant_speed = true
 floor_max_angle = 0.0
 platform_on_leave = 2
 platform_floor_layers = 4294967040
-platform_wall_layers = 1
-safe_margin = 10.0
+platform_wall_layers = 255
 script = ExtResource("1_ulhf7")
 areaPingObj = ExtResource("3_4xmwk")
+noiseArea = NodePath("NoiseArea")
 
 [node name="SubBody" type="Node2D" parent="."]
 

@@ -10,12 +10,15 @@ public partial class PlayerSubTest : CharacterBody2D
 	//[Export] public const float rangedPingCoolDown = 5f;
 	//[Export] public PackedScene rangedPingObj;
 	[Export] public PackedScene areaPingObj;
+	[Export] public Area2D noiseArea;
 
 	//temp until level manager
 	[Export] public Node HealthBar;
 
 	public float minPingTime = 1f;
 	public float maxPingTime = 5f;
+	public bool hasHitWall = false;
+	public bool makingNoise = false;
 
 	private Node2D subBody;
 	private Node2D rayCasts;
@@ -38,16 +41,20 @@ public partial class PlayerSubTest : CharacterBody2D
 			if (speedMultiplier < 1.5f)
 			{
 				speedMultiplier += 0.5f;
+				noiseArea.Scale += new Vector2(0.33f, 0.33f);
 			}
-			//GD.Print(speedMultiplier);
+			GD.Print(speedMultiplier);
+			GD.Print(noiseArea.Scale);
 		}
 		if (Input.IsActionJustPressed("Speed-"))
 		{
 			if (speedMultiplier > 0.5f)
 			{
 				speedMultiplier -= 0.5f;
+				noiseArea.Scale -= new Vector2(0.33f, 0.33f);
 			}
-			//GD.Print(speedMultiplier);
+			GD.Print(speedMultiplier);
+			GD.Print(noiseArea.Scale);
 		}
 
 		//pings around the sub, checking for nearby walls/objs/creatures
@@ -73,27 +80,37 @@ public partial class PlayerSubTest : CharacterBody2D
 		//input control
 		GetInput();
 
+		if(Velocity != Vector2.Zero)
+		{
+			//GD.Print(Velocity);
+			makingNoise = true;
+		}
+		else
+		{
+			//GD.Print(Velocity);
+			makingNoise = false;
+		}
+
 		//handle collision damage
 		if (MoveAndSlide())
 		{
-            UIControl oxyTestScript = HealthBar as UIControl;
-            oxyTestScript.DepleteOxy();
-            Velocity = Vector2.Zero;
-        }
+			if (hasHitWall == false)
+			{
+				hasHitWall = true;
+				UIControl oxyTestScript = HealthBar as UIControl;
+				oxyTestScript.DepleteOxy();
+			}
+		}
+		else
+		{
+			hasHitWall = false;
+		}
 	}
 
 	public void GetInput()
 	{
 		Vector2 inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
 		Velocity = inputDirection.Normalized() * speed * speedMultiplier;
-	}
-
-	public void ReleaseActions()
-	{
-		Input.ActionRelease("Left");
-		Input.ActionRelease("Right");
-		Input.ActionRelease("Up");
-		Input.ActionRelease("Down");
 	}
 
 	public void SubPing(float timeHeld)
