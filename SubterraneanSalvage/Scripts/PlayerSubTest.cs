@@ -111,6 +111,14 @@ public partial class PlayerSubTest : CharacterBody2D
 	{
 		Vector2 inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
 		Velocity = inputDirection.Normalized() * speed * speedMultiplier;
+		if(Velocity.X < 0)
+		{
+			subBody.Scale = new Vector2(-1f, 1f);
+		}
+		if (Velocity.X > 0)
+		{
+			subBody.Scale = new Vector2(1f, 1f);
+		}
 	}
 
 	public void SubPing(float timeHeld)
