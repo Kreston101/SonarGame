@@ -43,5 +43,6 @@ public partial class LevelManager : Node2D
 	public void ForceTimeout()
 	{
 		RootOnOxyTimerTimeout();
+		player.Modulate = new Color(1, 0, 0);
 	}
 }

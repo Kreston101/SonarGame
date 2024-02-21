@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=13 format=3 uid="uid://ch8njdwl883wa"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="4_eviks"]
 [ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="6_6vr8d"]
+[ext_resource type="PackedScene" uid="uid://dam4dri0vspe1" path="res://Scenes/sea_mine.tscn" id="7_m26kt"]
 
 [sub_resource type="Gradient" id="Gradient_n1mmo"]
 offsets = PackedFloat32Array(0)
@@ -158,6 +159,7 @@ HealthBar = NodePath("../CanvasLayer")
 metadata/_edit_lock_ = true
 
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
+visible = false
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
@@ -178,7 +180,7 @@ rotation = -2.6381
 rotates = false
 
 [node name="School1" parent="Path2D2/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
-position = Vector2(0.482544, 0.875916)
+position = Vector2(0.482666, 0.875732)
 rotation = 2.6381
 followPath = NodePath("..")
 speed = 100.0
@@ -193,8 +195,8 @@ position = Vector2(349, -139)
 rotation = -2.6381
 rotates = false
 
-[node name="School1" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
-position = Vector2(0.482544, 0.875916)
+[node name="School2" parent="Path2D/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
+position = Vector2(0.482666, 0.875977)
 rotation = 2.6381
 followPath = NodePath("..")
 speed = 100.0
@@ -209,11 +211,32 @@ position = Vector2(349, -139)
 rotation = -2.6381
 rotates = false
 
-[node name="School1" parent="Path2D3/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
-position = Vector2(0.482544, 0.875916)
+[node name="School3" parent="Path2D3/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("6_6vr8d")]
+position = Vector2(0.482422, 0.875732)
 rotation = 2.6381
 followPath = NodePath("..")
 speed = 100.0
+
+[node name="SeaMine" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3036, 46)
+
+[node name="SeaMine2" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3034, 197)
+
+[node name="SeaMine3" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(2902, 86)
+
+[node name="SeaMine4" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3007, -217)
+
+[node name="SeaMine5" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3289, -130)
+
+[node name="SeaMine6" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3391, 83)
+
+[node name="SeaMine7" parent="." instance=ExtResource("7_m26kt")]
+position = Vector2(3451, -34)
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]

@@ -15,7 +15,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	//temp until level manager
 	[Export] public Node HealthBar;
 
-	public float minPingTime = 1f;
+	//public float minPingTime = 0.5f;
 	public float maxPingTime = 5f;
 	public bool hasHitWall = false;
 	public bool makingNoise = false;
@@ -129,10 +129,6 @@ public partial class PlayerSubTest : CharacterBody2D
 		{
 			timeHeld = maxPingTime;
 		}
-		else if (timeHeld <= minPingTime)
-		{
-			timeHeld = minPingTime;
-		}
 		else
 		{
 			timeHeld = (float)Math.Round(timeHeld);
@@ -145,8 +141,9 @@ public partial class PlayerSubTest : CharacterBody2D
 			AddSibling(ping);
 			ping.Position = GlobalPosition;
 			AreaPing pingObjScript = ping as AreaPing;
+			pingObjScript.origin = GlobalPosition;
 			pingObjScript.maxLifetime = timeHeld;
-			GD.Print(pingObjScript.maxLifetime);
+			//GD.Print(pingObjScript.maxLifetime);
 			float angle = i * 0.26f;
 			pingObjScript.direction = new Vector2(MathF.Cos(angle),MathF.Sin(angle));
 		}
