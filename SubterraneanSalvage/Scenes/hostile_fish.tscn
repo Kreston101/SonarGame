@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cv6g0mefpfnl"]
+
+[ext_resource type="Script" path="res://Scripts/HostileFish.cs" id="1_s5n0f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ugmm6"]
+
+[sub_resource type="Gradient" id="Gradient_2220n"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jv63j"]
+gradient = SubResource("Gradient_2220n")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6445h"]
+radius = 48.0
+
+[node name="HostileFish" type="Area2D" groups=["Hostile"]]
+script = ExtResource("1_s5n0f")
+speed = 450.0
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(9.53674e-07, 8.58307e-06)
+scale = Vector2(96.1089, 96)
+mesh = SubResource("SphereMesh_ugmm6")
+texture = SubResource("GradientTexture1D_jv63j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6445h")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="area_exited" from="." to="." method="OnAreaExited"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

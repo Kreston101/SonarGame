@@ -18,5 +18,7 @@ mesh = SubResource("SphereMesh_4tk21")
 [node name="Collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3tsq1")
 
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
 [connection signal="area_entered" from="." to="." method="OnSonarEntered"]
 [connection signal="area_exited" from="." to="." method="OnSonarExit"]
+[connection signal="area_exited" from="." to="." method="OnAreaExited"]

@@ -22,7 +22,7 @@ public partial class PassiveCreature : Area2D
 		followPath.Progress += speed * (float)delta;
 	}
 
-	private void OnSonarEntered(Area2D area)
+	private void OnAreaEntered(Area2D area)
 	{
 		if (area.IsInGroup("PassiveSonar"))
 		{
@@ -30,7 +30,8 @@ public partial class PassiveCreature : Area2D
 		}
 	}
 
-	private void OnSonarExit(Area2D area)
+
+	private void OnAreaExited(Area2D area)
 	{
 		if (area.IsInGroup("PassiveSonar"))
 		{

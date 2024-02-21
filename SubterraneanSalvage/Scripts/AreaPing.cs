@@ -50,8 +50,9 @@ public partial class AreaPing : Area2D
 	{
 		if (area.IsInGroup("Hostile"))
 		{
-			//send position
-			//set enemy in track mode
+			GD.Print("alerted");
+			HostileFish madFish = area as HostileFish;
+			madFish.ChasePlayer(origin);
 		}
 	}
 }
