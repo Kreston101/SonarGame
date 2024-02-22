@@ -20,7 +20,7 @@ radius = 12.8062
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0pbd"]
 radius = 192.0
 
-[node name="PlayerSub" type="CharacterBody2D" node_paths=PackedStringArray("noiseArea")]
+[node name="PlayerSub" type="CharacterBody2D" node_paths=PackedStringArray("noiseArea") groups=["Player"]]
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 3.14159
@@ -110,7 +110,7 @@ shape = SubResource("CircleShape2D_7037y")
 one_way_collision_margin = 0.0
 debug_color = Color(0.14902, 0.647059, 0, 0.419608)
 
-[node name="NoiseArea" type="Area2D" parent="." groups=["SubNoise"]]
+[node name="NoiseArea" type="Area2D" parent="." groups=["NoiseArea"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoiseArea"]
 shape = SubResource("CircleShape2D_x0pbd")

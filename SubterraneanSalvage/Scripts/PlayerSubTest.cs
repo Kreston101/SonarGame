@@ -139,8 +139,8 @@ public partial class PlayerSubTest : CharacterBody2D
 		{
 			Node2D ping = (Node2D)areaPingObj.Instantiate();
 			AddSibling(ping);
-			ping.Position = GlobalPosition;
 			AreaPing pingObjScript = ping as AreaPing;
+			ping.Position = GlobalPosition;
 			pingObjScript.origin = GlobalPosition;
 			pingObjScript.maxLifetime = timeHeld;
 			//GD.Print(pingObjScript.maxLifetime);

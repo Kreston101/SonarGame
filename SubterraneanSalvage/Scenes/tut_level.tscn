@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=14 format=3 uid="uid://ch8njdwl883wa"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
@@ -33,12 +33,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
 }
 point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_u622b"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1217, -66, 0, 0, 0, 0, 23, 439, 0, 0, 0, 0, 131, 80, 0, 0, 0, 0, 547, -193, 0, 0, 0, 0, 1217, -66)
-}
-point_count = 5
 
 [node name="TutLevel" type="Node2D" node_paths=PackedStringArray("player", "endPoint", "UI", "oxyTimer")]
 script = ExtResource("1_ewlfb")
@@ -244,16 +238,8 @@ position = Vector2(3391, 83)
 [node name="SeaMine7" parent="." instance=ExtResource("7_m26kt")]
 position = Vector2(-309, 594)
 
-[node name="HostilePath" type="Path2D" parent="."]
-position = Vector2(2708, 427)
-curve = SubResource("Curve2D_u622b")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="HostilePath"]
-position = Vector2(1217, -66)
-rotation = 2.74146
-
-[node name="HostileFish" parent="HostilePath/PathFollow2D" node_paths=PackedStringArray("followPath") instance=ExtResource("8_r20fv")]
-followPath = NodePath("..")
+[node name="HostileFish" parent="." instance=ExtResource("8_r20fv")]
+position = Vector2(3805, 369)
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]

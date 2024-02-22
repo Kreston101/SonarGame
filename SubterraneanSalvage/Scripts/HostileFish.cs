@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using System.Reflection;
 
 public partial class HostileFish : Area2D
@@ -23,7 +24,7 @@ public partial class HostileFish : Area2D
 	{
 		if(!chasing)
 		{
-			followPath.Progress += speed * (float)delta;
+			//followPath.Progress += speed * (float)delta;
 		}
 		else
 		{
@@ -32,10 +33,12 @@ public partial class HostileFish : Area2D
 			{
 				Vector2 direction = targetPos - Position;
 				Position += direction.Normalized() * speed * (float)delta;
+				GD.Print("chasing");
 			}
 			else
 			{
 				chasing = false;
+				GD.Print("stopped chasing");
 			}
 		}
 	}
@@ -49,11 +52,12 @@ public partial class HostileFish : Area2D
 
 		if (area.IsInGroup("NoiseArea"))
 		{
-			PlayerSubTest playerScript = new PlayerSubTest();
+			PlayerSubTest playerScript = area.GetParent() as PlayerSubTest;
 			if (playerScript.makingNoise)
 			{
-				ChasePlayer(area.Position);
+				ChasePlayer(area.GlobalPosition);
 			}
+			GD.Print("chasing sound");
 		}
 	}
 
@@ -71,17 +75,25 @@ public partial class HostileFish : Area2D
 		if (chasing)
 		{
 			timer = 0;
+			targetPos = soundOrigin;
+			GD.Print("Still chasing");
 		}
 		if(chasing == false)
 		{
+			timer = 0;
 			chasing = true;
 			targetPos = soundOrigin;
+			GD.Print(targetPos + "the hunt begins");
 		}
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		LevelManager lvlMan = GetParent() as LevelManager;
-		lvlMan.ForceTimeout();
+		if (body.IsInGroup("Player"))
+		{
+			LevelManager lvlMan = GetOwner<Node2D>() as LevelManager;
+			GD.Print(lvlMan);
+			lvlMan.ForceTimeout();
+		}
 	}
 }
