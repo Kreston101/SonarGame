@@ -89,11 +89,11 @@ public partial class HostileFish : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body.IsInGroup("Player"))
-		{
-			LevelManager lvlMan = GetOwner<Node2D>() as LevelManager;
-			GD.Print(lvlMan);
-			lvlMan.ForceTimeout();
-		}
+		//if (body.IsInGroup("Player"))
+		//{
+		//	LevelManager lvlMan = GetOwner<Node2D>() as LevelManager;
+		//	GD.Print(lvlMan);
+		//	lvlMan.ForceTimeout();
+		//}
 	}
 }

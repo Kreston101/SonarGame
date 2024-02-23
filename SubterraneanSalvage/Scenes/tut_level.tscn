@@ -240,6 +240,7 @@ position = Vector2(-309, 594)
 
 [node name="HostileFish" parent="." instance=ExtResource("8_r20fv")]
 position = Vector2(3805, 369)
+speed = 150.0
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]
