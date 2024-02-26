@@ -10,89 +10,83 @@ public partial class HostileFish : Area2D
 	[Export] public float speed;
 	public bool chasing = false;
 	public Vector2 targetPos;
+	public Vector2 direction;
+	public bool withinNoise = false;
 
 	private float timer = 0;
+	private LevelManager lvlMan;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		//Hide();
+		lvlMan = GetOwner<Node2D>() as LevelManager;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(!chasing)
+		if (chasing)
 		{
-			//followPath.Progress += speed * (float)delta;
-		}
-		else
-		{
-			timer += (float)delta;
-			if(timer < 3f) 
+			Position += direction.Normalized() * speed * (float)delta;
+			if (withinNoise)
 			{
-				Vector2 direction = targetPos - Position;
-				Position += direction.Normalized() * speed * (float)delta;
-				GD.Print("chasing");
+				ChasePlayer(lvlMan.player.GlobalPosition);
 			}
 			else
 			{
-				chasing = false;
-				GD.Print("stopped chasing");
+				//GD.Print("lag mode");
+				timer += (float)delta;
+				if (timer > 3f)
+				{
+					chasing = false;
+					timer = 0;
+				}
 			}
+		}
+		else
+		{
+			//follow path, path find, something
 		}
 	}
 
+	//trigger
 	private void OnAreaEntered(Area2D area)
 	{
-		if (area.IsInGroup("PassiveSonar"))
-		{
-			//Show();
-		}
-
 		if (area.IsInGroup("NoiseArea"))
 		{
-			PlayerSubTest playerScript = area.GetParent() as PlayerSubTest;
-			if (playerScript.makingNoise)
+			//GD.Print("in area");
+			if (lvlMan.playerScript.makingNoise == true) //only trigger if ther player is moving
 			{
-				ChasePlayer(area.GlobalPosition);
+				withinNoise = true; //only enter exit trigger, assume stay if no exit
+				ChasePlayer(area.GlobalPosition); //get the player coords
 			}
-			GD.Print("chasing sound");
+			//GD.Print("chasing sound");
+			//GD.Print(area.GlobalPosition);
 		}
 	}
 
 
 	private void OnAreaExited(Area2D area)
 	{
-		if (area.IsInGroup("PassiveSonar"))
+		if (area.IsInGroup("NoiseArea"))
 		{
-			//Hide();
+			withinNoise = false;
+			//GD.Print("leaft area");
 		}
 	}
 
 	public void ChasePlayer(Vector2 soundOrigin)
 	{
-		if (chasing)
-		{
-			timer = 0;
-			targetPos = soundOrigin;
-			GD.Print("Still chasing");
-		}
-		if(chasing == false)
-		{
-			timer = 0;
-			chasing = true;
-			targetPos = soundOrigin;
-			GD.Print(targetPos + "the hunt begins");
-		}
+		chasing = true;
+		targetPos = soundOrigin;
+		direction = targetPos - Position;
+		//GD.Print("Still chasing");
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
 		//if (body.IsInGroup("Player"))
 		//{
-		//	LevelManager lvlMan = GetOwner<Node2D>() as LevelManager;
-		//	GD.Print(lvlMan);
 		//	lvlMan.ForceTimeout();
 		//}
 	}

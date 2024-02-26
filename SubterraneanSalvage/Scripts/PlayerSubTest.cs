@@ -8,7 +8,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	[Export] public float speedMultiplier = 1f;
 	[Export] public const float pingCoolDown = 3f;
 	//[Export] public const float rangedPingCoolDown = 5f;
-	//[Export] public PackedScene rangedPingObj;
+	[Export] public PackedScene rangedPingObj;
 	[Export] public PackedScene areaPingObj;
 	[Export] public Area2D noiseArea;
 
@@ -68,6 +68,9 @@ public partial class PlayerSubTest : CharacterBody2D
 
 		if (Input.IsActionJustReleased("Ping"))
 		{
+			Node2D mark = (Node2D)rangedPingObj.Instantiate();
+			AddSibling(mark);
+			mark.Position = GlobalPosition;
 			SubPing(pingHoldTime);
 			pingHoldTime = 0;
 		}
@@ -80,15 +83,15 @@ public partial class PlayerSubTest : CharacterBody2D
 		//input control
 		GetInput();
 
-		if(Velocity != Vector2.Zero)
+		if(Velocity == Vector2.Zero)
 		{
-			//GD.Print(Velocity);
-			makingNoise = true;
+			GD.Print("current =" + Velocity + " " + makingNoise);
+			makingNoise = false;
 		}
 		else
 		{
-			//GD.Print(Velocity);
-			makingNoise = false;
+			GD.Print("current =" + Velocity + " " + makingNoise);
+			makingNoise = true;
 		}
 
 		//handle collision damage

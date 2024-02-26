@@ -14,7 +14,7 @@ public partial class LevelManager : Node2D
 
 	public float oxyTimeLeft;
 
-	private PlayerSubTest playerScript;
+	public PlayerSubTest playerScript;
 	private UIControl UIScript;
 
 	// Called when the node enters the scene tree for the first time.
