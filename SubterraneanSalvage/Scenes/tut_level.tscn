@@ -158,9 +158,6 @@ scale = Vector2(1, 5.145)
 rangedPingObj = ExtResource("5_wc8r5")
 HealthBar = NodePath("../CanvasLayer")
 
-[node name="Camera2D" type="Camera2D" parent="PlayerSub"]
-metadata/_edit_lock_ = true
-
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
 z_index = -1
 position = Vector2(1.5, -2)
@@ -243,6 +240,16 @@ position = Vector2(-309, 594)
 [node name="HostileFish" parent="." instance=ExtResource("8_r20fv")]
 position = Vector2(3805, 369)
 speed = 200.0
+
+[node name="Camera2D" type="Camera2D" parent="HostileFish"]
+metadata/_edit_lock_ = true
+
+[node name="DebugBg" type="Sprite2D" parent="HostileFish"]
+z_index = -1
+position = Vector2(1.5, -2)
+scale = Vector2(4.49609, 646)
+texture = SubResource("GradientTexture1D_3bvth")
+metadata/_edit_lock_ = true
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]

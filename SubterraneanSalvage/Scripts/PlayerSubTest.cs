@@ -85,12 +85,12 @@ public partial class PlayerSubTest : CharacterBody2D
 
 		if(Velocity == Vector2.Zero)
 		{
-			GD.Print("current =" + Velocity + " " + makingNoise);
+			//GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = false;
 		}
 		else
 		{
-			GD.Print("current =" + Velocity + " " + makingNoise);
+			//GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = true;
 		}
 
@@ -138,7 +138,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			GD.Print(timeHeld + " abs");
 		}
 
-		for (int i = 1; i <= 24; i++)
+		for (int i = 1; i <= 30; i++)
 		{
 			Node2D ping = (Node2D)areaPingObj.Instantiate();
 			AddSibling(ping);
@@ -147,7 +147,8 @@ public partial class PlayerSubTest : CharacterBody2D
 			pingObjScript.origin = GlobalPosition;
 			pingObjScript.maxLifetime = timeHeld;
 			//GD.Print(pingObjScript.maxLifetime);
-			float angle = i * 0.26f;
+			float angle = i * ((360/30) * (Mathf.Pi/180));
+			GD.Print(angle);
 			pingObjScript.direction = new Vector2(MathF.Cos(angle),MathF.Sin(angle));
 		}
 	}

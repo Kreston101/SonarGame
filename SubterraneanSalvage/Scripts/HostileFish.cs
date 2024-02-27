@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.CodeDom.Compiler;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 public partial class HostileFish : Area2D
@@ -8,6 +10,7 @@ public partial class HostileFish : Area2D
 	[Export] public MeshInstance2D mesh;
 	[Export] public PathFollow2D followPath;
 	[Export] public float speed;
+	[Export] public RayCast2D raycast;
 	public bool chasing = false;
 	public Vector2 targetPos;
 	public Vector2 direction;
@@ -45,8 +48,31 @@ public partial class HostileFish : Area2D
 		}
 		else
 		{
-			//follow path, path find, something
+			if(timer < 3f)
+			{
+				Position += direction * speed * (float)delta;
+				timer += (float)delta;
+			}
+			else
+			{
+				CreateDirection();
+				raycast.TargetPosition = direction;
+				if (raycast.IsColliding())
+				{
+					CreateDirection();
+				}
+			}
 		}
+	}
+
+	private void CreateDirection()
+	{
+		RandomNumberGenerator rng = new RandomNumberGenerator();
+		float randX = rng.RandfRange(-1f, 1f);
+		float randY = rng.RandfRange(-1f, 1f);
+		direction = new Vector2(randX, randY).Normalized();
+		GD.Print(direction);
+		timer = 0;
 	}
 
 	//trigger
@@ -85,9 +111,14 @@ public partial class HostileFish : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		//if (body.IsInGroup("Player"))
-		//{
-		//	lvlMan.ForceTimeout();
-		//}
+		if (body.IsInGroup("Player"))
+		{
+			lvlMan.ForceTimeout();
+		}
+
+		if (body.IsInGroup("Terrain"))
+		{
+			CreateDirection();
+		}
 	}
 }

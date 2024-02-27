@@ -50,7 +50,7 @@ public partial class AreaPing : Area2D
 	{
 		if (area.IsInGroup("Hostile"))
 		{
-			GD.Print("alerted");
+			//GD.Print("alerted");
 			HostileFish madFish = area as HostileFish;
 			madFish.ChasePlayer(origin);
 		}

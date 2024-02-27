@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6b5y1pp316ei"]
+[gd_scene load_steps=9 format=3 uid="uid://c6b5y1pp316ei"]
 
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_117b1"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_6dof3"]
+[ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="3_rx30q"]
 [ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="4_hks8v"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="5_j5kh1"]
 
@@ -18,7 +19,8 @@ gradient = SubResource("Gradient_v271l")
 [node name="CanvasLayer" parent="." instance=ExtResource("1_117b1")]
 
 [node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("1_acchm")]
-position = Vector2(574, 322)
+position = Vector2(2142, 380)
+rangedPingObj = ExtResource("3_rx30q")
 HealthBar = NodePath("../CanvasLayer")
 metadata/_edit_group_ = true
 
@@ -34,6 +36,10 @@ texture = SubResource("GradientTexture1D_x4fds")
 metadata/_edit_lock_ = true
 
 [node name="StaticObjs" type="Node2D" parent="."]
+
+[node name="StaticBody2D9" parent="StaticObjs" instance=ExtResource("2_6dof3")]
+position = Vector2(2144, 49)
+scale = Vector2(10, 1)
 
 [node name="Brick" parent="StaticObjs" instance=ExtResource("2_6dof3")]
 position = Vector2(357, 83)
@@ -84,3 +90,15 @@ position = Vector2(1114, 784)
 
 [node name="EndPoint" parent="." instance=ExtResource("5_j5kh1")]
 position = Vector2(-271, 1545)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(1680, 357)
+scale = Vector2(1, 10)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(2597, 357)
+scale = Vector2(1, 10)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("2_6dof3")]
+position = Vector2(2155, 739)
+scale = Vector2(10, 1)

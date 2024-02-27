@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv6g0mefpfnl"]
+[gd_scene load_steps=4 format=3 uid="uid://cv6g0mefpfnl"]
 
 [ext_resource type="Script" path="res://Scripts/HostileFish.cs" id="1_s5n0f"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_ugmm6"]
-
-[sub_resource type="Gradient" id="Gradient_2220n"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jv63j"]
-gradient = SubResource("Gradient_2220n")
+[ext_resource type="Texture2D" uid="uid://bxi3qeghm5jwi" path="res://Ping.png" id="2_2hfp7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6445h"]
 radius = 48.0
@@ -18,11 +10,10 @@ radius = 48.0
 script = ExtResource("1_s5n0f")
 speed = 450.0
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-position = Vector2(9.53674e-07, 8.58307e-06)
-scale = Vector2(96.1089, 96)
-mesh = SubResource("SphereMesh_ugmm6")
-texture = SubResource("GradientTexture1D_jv63j")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, -1.90735e-06)
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("2_2hfp7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_6445h")
