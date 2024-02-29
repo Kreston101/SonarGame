@@ -13,7 +13,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	[Export] public Area2D noiseArea;
 
 	//temp until level manager
-	[Export] public Node HealthBar;
+	[Export] public Node levelManager;
 
 	//public float minPingTime = 0.5f;
 	public float maxPingTime = 5f;
@@ -95,13 +95,23 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 
 		//handle collision damage
-		if (MoveAndSlide())
+		KinematicCollision2D collision = MoveAndCollide(Velocity * (float)delta);
+		if (collision != null)
 		{
-			if (hasHitWall == false)
+			Node2D checkGroup = (Node2D)collision.GetCollider();
+			if (checkGroup.IsInGroup("Terrain"))
 			{
-				hasHitWall = true;
-				UIControl oxyTestScript = HealthBar as UIControl;
-				oxyTestScript.DepleteOxy();
+				if (hasHitWall == false)
+				{
+					hasHitWall = true;
+					LevelManager lvlManScript = levelManager as LevelManager;
+					lvlManScript.DamagePlayer();
+				}
+			}
+			else if (checkGroup.IsInGroup("Hostile"))
+			{
+				LevelManager lvlManScript = levelManager as LevelManager;
+				lvlManScript.ForceTimeout();
 			}
 		}
 		else
@@ -150,6 +160,27 @@ public partial class PlayerSubTest : CharacterBody2D
 			float angle = i * ((360/30) * (Mathf.Pi/180));
 			GD.Print(angle);
 			pingObjScript.direction = new Vector2(MathF.Cos(angle),MathF.Sin(angle));
+		}
+	}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		if (body.IsInGroup("Hostile"))
+		{
+			GD.Print("alerted");
+			HostileFish madFish = body as HostileFish;
+			madFish.ChasePlayer(GlobalPosition);
+			madFish.withinNoise = true;
+		}
+	}
+
+	private void OnBodyExit(Node2D body)
+	{
+		if (body.IsInGroup("Hostile"))
+		{
+			GD.Print("outran");
+			HostileFish madFish = body as HostileFish;
+			madFish.withinNoise = false;
 		}
 	}
 

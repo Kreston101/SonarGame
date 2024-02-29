@@ -6,9 +6,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6445h"]
 radius = 48.0
 
-[node name="HostileFish" type="Area2D" groups=["Hostile"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["Hostile"]]
 script = ExtResource("1_s5n0f")
-speed = 450.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, -1.90735e-06)
@@ -19,6 +18,10 @@ texture = ExtResource("2_2hfp7")
 shape = SubResource("CircleShape2D_6445h")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
-[connection signal="area_exited" from="." to="." method="OnAreaExited"]
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 75)
+hit_from_inside = true
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 72)
+width = 5.0

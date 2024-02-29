@@ -37,6 +37,7 @@ public partial class LevelManager : Node2D
 	private void RootOnOxyTimerTimeout()
 	{
 		Engine.TimeScale = 0;
+		player.Modulate = new Color(1, 0, 0);
 		GD.Print("dead");
 	}
 
@@ -44,5 +45,10 @@ public partial class LevelManager : Node2D
 	{
 		RootOnOxyTimerTimeout();
 		player.Modulate = new Color(1, 0, 0);
+	}
+
+	public void DamagePlayer()
+	{
+		UIScript.DepleteOxy();
 	}
 }

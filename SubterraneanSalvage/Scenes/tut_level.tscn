@@ -154,11 +154,14 @@ position = Vector2(3577, 2968)
 rotation = 0.392699
 scale = Vector2(1, 5.145)
 
-[node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("3_bep4k")]
+[node name="PlayerSub" parent="." node_paths=PackedStringArray("levelManager") instance=ExtResource("3_bep4k")]
 rangedPingObj = ExtResource("5_wc8r5")
-HealthBar = NodePath("../CanvasLayer")
+levelManager = NodePath("..")
 
-[node name="DebugBg" type="Sprite2D" parent="PlayerSub"]
+[node name="Camera2D" type="Camera2D" parent="PlayerSub"]
+metadata/_edit_lock_ = true
+
+[node name="DebugBg" type="Sprite2D" parent="PlayerSub/Camera2D"]
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
@@ -237,19 +240,8 @@ position = Vector2(3391, 83)
 [node name="SeaMine7" parent="." instance=ExtResource("7_m26kt")]
 position = Vector2(-309, 594)
 
-[node name="HostileFish" parent="." instance=ExtResource("8_r20fv")]
-position = Vector2(3805, 369)
-speed = 200.0
-
-[node name="Camera2D" type="Camera2D" parent="HostileFish"]
-metadata/_edit_lock_ = true
-
-[node name="DebugBg" type="Sprite2D" parent="HostileFish"]
-z_index = -1
-position = Vector2(1.5, -2)
-scale = Vector2(4.49609, 646)
-texture = SubResource("GradientTexture1D_3bvth")
-metadata/_edit_lock_ = true
+[node name="CharacterBody2D" parent="." instance=ExtResource("8_r20fv")]
+position = Vector2(347, 421)
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]

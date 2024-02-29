@@ -44,14 +44,11 @@ public partial class AreaPing : Area2D
 			Position -= direction * padding;
 			direction = Vector2.Zero;
 		}
-	}
 
-	private void OnAreaEntered(Area2D area)
-	{
-		if (area.IsInGroup("Hostile"))
+		if (body.IsInGroup("Hostile"))
 		{
-			//GD.Print("alerted");
-			HostileFish madFish = area as HostileFish;
+			GD.Print("alerted");
+			HostileFish madFish = body as HostileFish;
 			madFish.ChasePlayer(origin);
 		}
 	}

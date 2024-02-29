@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="1_acchm"]
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="2_6dof3"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="3_rx30q"]
-[ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="4_hks8v"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="5_j5kh1"]
+[ext_resource type="PackedScene" uid="uid://cv6g0mefpfnl" path="res://Scenes/hostile_fish.tscn" id="7_ttowm"]
 
 [sub_resource type="Gradient" id="Gradient_v271l"]
 offsets = PackedFloat32Array(0)
@@ -18,22 +18,10 @@ gradient = SubResource("Gradient_v271l")
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_117b1")]
 
-[node name="PlayerSub" parent="." node_paths=PackedStringArray("HealthBar") instance=ExtResource("1_acchm")]
-position = Vector2(2142, 380)
+[node name="PlayerSub" parent="." instance=ExtResource("1_acchm")]
+position = Vector2(581, 323)
 rangedPingObj = ExtResource("3_rx30q")
-HealthBar = NodePath("../CanvasLayer")
 metadata/_edit_group_ = true
-
-[node name="Camera2D" type="Camera2D" parent="PlayerSub"]
-metadata/_edit_lock_ = true
-
-[node name="DebugBg" type="Sprite2D" parent="PlayerSub/Camera2D"]
-visible = false
-z_index = -1
-position = Vector2(1.5, -2)
-scale = Vector2(4.49609, 646)
-texture = SubResource("GradientTexture1D_x4fds")
-metadata/_edit_lock_ = true
 
 [node name="StaticObjs" type="Node2D" parent="."]
 
@@ -85,9 +73,6 @@ position = Vector2(1598, 1168)
 rotation = -0.322886
 scale = Vector2(1, 11.05)
 
-[node name="Area2D" parent="." instance=ExtResource("4_hks8v")]
-position = Vector2(1114, 784)
-
 [node name="EndPoint" parent="." instance=ExtResource("5_j5kh1")]
 position = Vector2(-271, 1545)
 
@@ -102,3 +87,16 @@ scale = Vector2(1, 10)
 [node name="StaticBody2D3" parent="." instance=ExtResource("2_6dof3")]
 position = Vector2(2155, 739)
 scale = Vector2(10, 1)
+
+[node name="HostileFish" parent="." instance=ExtResource("7_ttowm")]
+position = Vector2(2124, 393)
+
+[node name="Camera2D" type="Camera2D" parent="HostileFish"]
+metadata/_edit_lock_ = true
+
+[node name="DebugBg" type="Sprite2D" parent="HostileFish/Camera2D"]
+z_index = -1
+position = Vector2(1.5, -2)
+scale = Vector2(4.49609, 646)
+texture = SubResource("GradientTexture1D_x4fds")
+metadata/_edit_lock_ = true

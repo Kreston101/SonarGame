@@ -5,12 +5,11 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-public partial class HostileFish : Area2D
+public partial class HostileFish : CharacterBody2D
 {
-	[Export] public MeshInstance2D mesh;
-	[Export] public PathFollow2D followPath;
 	[Export] public float speed;
 	[Export] public RayCast2D raycast;
+	[Export] public Line2D debugLine;
 	public bool chasing = false;
 	public Vector2 targetPos;
 	public Vector2 direction;
@@ -28,77 +27,64 @@ public partial class HostileFish : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (chasing)
+		if (!chasing)
 		{
-			Position += direction.Normalized() * speed * (float)delta;
-			if (withinNoise)
-			{
-				ChasePlayer(lvlMan.player.GlobalPosition);
-			}
-			else
-			{
-				//GD.Print("lag mode");
-				timer += (float)delta;
-				if (timer > 3f)
-				{
-					chasing = false;
-					timer = 0;
-				}
-			}
+			CreateDirection();
 		}
-		else
-		{
-			if(timer < 3f)
-			{
-				Position += direction * speed * (float)delta;
-				timer += (float)delta;
-			}
-			else
-			{
-				CreateDirection();
-				raycast.TargetPosition = direction;
-				if (raycast.IsColliding())
-				{
-					CreateDirection();
-				}
-			}
-		}
+
+		//if (chasing)
+		//{
+		//	Position += direction.Normalized() * speed * (float)delta;
+		//	if (withinNoise)
+		//	{
+		//		ChasePlayer(lvlMan.player.GlobalPosition);
+		//	}
+		//	else
+		//	{
+		//		//GD.Print("lag mode");
+		//		timer += (float)delta;
+		//		if (timer > 3f)
+		//		{
+		//			chasing = false;
+		//			timer = 0;
+		//		}
+		//	}
+		//}
+		//else
+		//{
+		//	if(timer < 3f)
+		//	{
+		//		Position += direction * speed * (float)delta;
+		//		timer += (float)delta;
+		//	}
+		//	else
+		//	{
+		//		CreateDirection();
+		//		raycast.TargetPosition = direction * 75f;
+		//		debugLine.ClearPoints();
+		//		debugLine.AddPoint(Vector2.Zero);
+		//		debugLine.AddPoint(raycast.TargetPosition);
+		//		raycast.ForceRaycastUpdate();
+		//		if (raycast.IsColliding())
+		//		{
+		//			GD.Print("raycast hit");
+		//			direction = Vector2.Zero;
+		//		}
+		//		else
+		//		{
+		//			timer = 0f;
+		//		}
+		//	}
+		//}
 	}
 
 	private void CreateDirection()
 	{
-		RandomNumberGenerator rng = new RandomNumberGenerator();
+		RandomNumberGenerator rng = new();
 		float randX = rng.RandfRange(-1f, 1f);
 		float randY = rng.RandfRange(-1f, 1f);
 		direction = new Vector2(randX, randY).Normalized();
 		GD.Print(direction);
-		timer = 0;
-	}
-
-	//trigger
-	private void OnAreaEntered(Area2D area)
-	{
-		if (area.IsInGroup("NoiseArea"))
-		{
-			//GD.Print("in area");
-			if (lvlMan.playerScript.makingNoise == true) //only trigger if ther player is moving
-			{
-				withinNoise = true; //only enter exit trigger, assume stay if no exit
-				ChasePlayer(area.GlobalPosition); //get the player coords
-			}
-			//GD.Print("chasing sound");
-			//GD.Print(area.GlobalPosition);
-		}
-	}
-
-
-	private void OnAreaExited(Area2D area)
-	{
-		if (area.IsInGroup("NoiseArea"))
-		{
-			withinNoise = false;
-			//GD.Print("leaft area");
-		}
 	}
 
 	public void ChasePlayer(Vector2 soundOrigin)
@@ -106,19 +92,6 @@ public partial class HostileFish : Area2D
 		chasing = true;
 		targetPos = soundOrigin;
 		direction = targetPos - Position;
-		//GD.Print("Still chasing");
-	}
-
-	private void OnBodyEntered(Node2D body)
-	{
-		if (body.IsInGroup("Player"))
-		{
-			lvlMan.ForceTimeout();
-		}
-
-		if (body.IsInGroup("Terrain"))
-		{
-			CreateDirection();
-		}
+		GD.Print("chase player");
 	}
 }
