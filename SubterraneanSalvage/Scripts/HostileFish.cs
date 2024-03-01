@@ -22,6 +22,7 @@ public partial class HostileFish : CharacterBody2D
 	public override void _Ready()
 	{
 		lvlMan = GetOwner<Node2D>() as LevelManager;
+		CreateDirection();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +30,41 @@ public partial class HostileFish : CharacterBody2D
 	{
 		if (!chasing)
 		{
-			CreateDirection();
+			if (timer < 3f)
+			{
+				timer += (float)delta;
+				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				if (collision != null)
+				{
+					CreateDirection();
+					timer = 0f;
+				}
+			}
+			else
+			{
+				CreateDirection();
+				timer = 0f;
+			}
+		}
+		else //chasing
+		{
+			if (withinNoise)
+			{
+				ChasePlayer(lvlMan.player.GlobalPosition);
+				MoveAndCollide(direction.Normalized() * speed * (float)delta);
+			}
+			else
+			{
+				MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				timer += (float)delta;
+				Vector2 distToLastHeard = targetPos - Position;
+				GD.Print(distToLastHeard);
+				if (timer > 3f || distToLastHeard <= direction.Normalized())
+				{
+					chasing = false;
+					timer = 0;
+				}
+			}
 		}
 
 		//if (chasing)
@@ -84,7 +119,7 @@ public partial class HostileFish : CharacterBody2D
 		float randX = rng.RandfRange(-1f, 1f);
 		float randY = rng.RandfRange(-1f, 1f);
 		direction = new Vector2(randX, randY).Normalized();
-		GD.Print(direction);
+		//GD.Print(direction);
 	}
 
 	public void ChasePlayer(Vector2 soundOrigin)

@@ -21,7 +21,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	public bool makingNoise = false;
 
 	private Node2D subBody;
-	private Node2D rayCasts;
+	//private Node2D rayCasts;
 
 	//private float rangedPingTimer = rangedPingCoolDown;
 	private float pingHoldTime;
@@ -29,7 +29,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	public override void _Ready()
 	{
 		subBody = (Node2D)GetNode("SubBody");
-		rayCasts = (Node2D)GetNode("Raycasts");
+		//rayCasts = (Node2D)GetNode("Raycasts");
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -43,8 +43,8 @@ public partial class PlayerSubTest : CharacterBody2D
 				speedMultiplier += 0.5f;
 				noiseArea.Scale += new Vector2(0.33f, 0.33f);
 			}
-			GD.Print(speedMultiplier);
-			GD.Print(noiseArea.Scale);
+			//GD.Print(speedMultiplier);
+			//GD.Print(noiseArea.Scale);
 		}
 		if (Input.IsActionJustPressed("Speed-"))
 		{
@@ -53,8 +53,8 @@ public partial class PlayerSubTest : CharacterBody2D
 				speedMultiplier -= 0.5f;
 				noiseArea.Scale -= new Vector2(0.33f, 0.33f);
 			}
-			GD.Print(speedMultiplier);
-			GD.Print(noiseArea.Scale);
+			//GD.Print(speedMultiplier);
+			//GD.Print(noiseArea.Scale);
 		}
 
 		//pings around the sub, checking for nearby walls/objs/creatures
@@ -63,7 +63,7 @@ public partial class PlayerSubTest : CharacterBody2D
 		if (Input.IsActionPressed("Ping"))
 		{
 			pingHoldTime += (float)delta;
-			GD.Print(pingHoldTime);
+			//GD.Print(pingHoldTime);
 		}
 
 		if (Input.IsActionJustReleased("Ping"))
@@ -136,7 +136,7 @@ public partial class PlayerSubTest : CharacterBody2D
 
 	public void SubPing(float timeHeld)
 	{
-		GD.Print("held for " + timeHeld);
+		//GD.Print("held for " + timeHeld);
 
 		if (timeHeld >= maxPingTime)
 		{
@@ -145,7 +145,7 @@ public partial class PlayerSubTest : CharacterBody2D
 		else
 		{
 			timeHeld = (float)Math.Round(timeHeld);
-			GD.Print(timeHeld + " abs");
+			//GD.Print(timeHeld + " abs");
 		}
 
 		for (int i = 1; i <= 30; i++)
@@ -158,7 +158,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			pingObjScript.maxLifetime = timeHeld;
 			//GD.Print(pingObjScript.maxLifetime);
 			float angle = i * ((360/30) * (Mathf.Pi/180));
-			GD.Print(angle);
+			//GD.Print(angle);
 			pingObjScript.direction = new Vector2(MathF.Cos(angle),MathF.Sin(angle));
 		}
 	}
@@ -167,10 +167,13 @@ public partial class PlayerSubTest : CharacterBody2D
 	{
 		if (body.IsInGroup("Hostile"))
 		{
-			GD.Print("alerted");
-			HostileFish madFish = body as HostileFish;
-			madFish.ChasePlayer(GlobalPosition);
-			madFish.withinNoise = true;
+			if(makingNoise == true)
+			{
+				GD.Print("alerted");
+				HostileFish madFish = body as HostileFish;
+				madFish.ChasePlayer(GlobalPosition);
+				madFish.withinNoise = true;
+			}
 		}
 	}
 
