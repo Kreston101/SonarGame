@@ -46,6 +46,7 @@ public partial class UIControl : CanvasLayer
 			OnOxygenTimerTimeout();
 			LevelManager parent = GetParent() as LevelManager;
 			parent.ForceTimeout();
+			GD.Print("time out called UI");
 		}
 		redTint.Color = red;
 	}

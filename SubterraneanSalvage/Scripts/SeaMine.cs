@@ -16,9 +16,13 @@ public partial class SeaMine : Area2D
 
 	private void OnPlayerEntered(Node2D body)
 	{
-		Modulate = new Color(1, 0, 0);
-		LevelManager lvlMan = lvlControlNode as LevelManager;
-		lvlMan.ForceTimeout();
+		if (body.IsInGroup("Player"))
+		{
+			Modulate = new Color(1, 0, 0);
+			LevelManager lvlMan = lvlControlNode as LevelManager;
+			lvlMan.ForceTimeout();
+			GD.Print("time out called sea mine");
+		}
 	}
 
 	private void OnPassiveSonarEnter(Area2D area)

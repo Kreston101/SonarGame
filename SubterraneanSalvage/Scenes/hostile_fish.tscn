@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_6445h"]
 radius = 48.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("raycast", "debugLine") groups=["Hostile"]]
+[node name="HostileFish" type="CharacterBody2D" node_paths=PackedStringArray("raycast", "debugLine") groups=["Hostile"]]
 script = ExtResource("1_s5n0f")
 speed = 250.0
 raycast = NodePath("RayCast2D")

@@ -68,9 +68,9 @@ public partial class PlayerSubTest : CharacterBody2D
 
 		if (Input.IsActionJustReleased("Ping"))
 		{
-			Node2D mark = (Node2D)rangedPingObj.Instantiate();
-			AddSibling(mark);
-			mark.Position = GlobalPosition;
+			//Node2D mark = (Node2D)rangedPingObj.Instantiate();
+			//AddSibling(mark);
+			//mark.Position = GlobalPosition;
 			SubPing(pingHoldTime);
 			pingHoldTime = 0;
 		}
@@ -85,12 +85,11 @@ public partial class PlayerSubTest : CharacterBody2D
 
 		if(Velocity == Vector2.Zero)
 		{
-			//GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = false;
 		}
 		else
 		{
-			//GD.Print("current =" + Velocity + " " + makingNoise);
+			GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = true;
 		}
 
@@ -98,11 +97,13 @@ public partial class PlayerSubTest : CharacterBody2D
 		KinematicCollision2D collision = MoveAndCollide(Velocity * (float)delta);
 		if (collision != null)
 		{
+			GD.Print("collision");
 			Node2D checkGroup = (Node2D)collision.GetCollider();
 			if (checkGroup.IsInGroup("Terrain"))
 			{
 				if (hasHitWall == false)
 				{
+					GD.Print("hit wall");
 					hasHitWall = true;
 					LevelManager lvlManScript = levelManager as LevelManager;
 					lvlManScript.DamagePlayer();
@@ -110,8 +111,10 @@ public partial class PlayerSubTest : CharacterBody2D
 			}
 			else if (checkGroup.IsInGroup("Hostile"))
 			{
+				GD.Print("hit fish");
 				LevelManager lvlManScript = levelManager as LevelManager;
 				lvlManScript.ForceTimeout();
+				GD.Print("time out called plyer");
 			}
 		}
 		else

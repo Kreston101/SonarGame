@@ -32,6 +32,7 @@ public partial class HostileFish : CharacterBody2D
 		{
 			if (timer < 3f)
 			{
+				GD.Print("patrol");
 				timer += (float)delta;
 				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				if (collision != null)
@@ -52,9 +53,11 @@ public partial class HostileFish : CharacterBody2D
 			{
 				ChasePlayer(lvlMan.player.GlobalPosition);
 				MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				GD.Print("chasing sound");
 			}
 			else
 			{
+				GD.Print("lost the sounds");
 				MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				timer += (float)delta;
 				Vector2 distToLastHeard = targetPos - Position;

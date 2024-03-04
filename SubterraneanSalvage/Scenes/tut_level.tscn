@@ -241,7 +241,7 @@ position = Vector2(3391, 83)
 position = Vector2(-309, 594)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("8_r20fv")]
-position = Vector2(347, 421)
+position = Vector2(3452, 493)
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="CanvasLayer" method="OnEndPointEntered"]
