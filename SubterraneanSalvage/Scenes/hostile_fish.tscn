@@ -10,7 +10,7 @@ radius = 48.0
 script = ExtResource("1_s5n0f")
 speed = 250.0
 raycast = NodePath("RayCast2D")
-debugLine = NodePath("Line2D")
+debugLine = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.90735e-06, -1.90735e-06)
@@ -24,7 +24,3 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 75)
 hit_from_inside = true
-
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 0, 72)
-width = 5.0

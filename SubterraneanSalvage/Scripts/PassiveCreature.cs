@@ -4,8 +4,7 @@ using System.Runtime.InteropServices;
 
 public partial class PassiveCreature : Area2D
 {
-	[Export] public MeshInstance2D mesh;
-	[Export] public PathFollow2D followPath;
+	public PathFollow2D followPath;
 	[Export] public float speed;
 
 	private float timer = 0;
@@ -13,7 +12,9 @@ public partial class PassiveCreature : Area2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		followPath = (PathFollow2D)GetParent();
 		Hide();
+		GD.Print($"{followPath} {Name}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +30,6 @@ public partial class PassiveCreature : Area2D
 			Show();
 		}
 	}
-
 
 	private void OnAreaExited(Area2D area)
 	{

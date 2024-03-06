@@ -10,6 +10,7 @@ public partial class LevelManager : Node2D
 	[Export] public int oxyLossRate;
 	[Export] public int levelNum;
 	[Export] public float stageOxy;
+	public Node2D endPointMaker;
 	//stage collectibles
 
 	public float oxyTimeLeft;
@@ -24,6 +25,9 @@ public partial class LevelManager : Node2D
 		UIScript = UI as UIControl;
 		oxyTimer.WaitTime = stageOxy;
 		UIScript.punishment = oxyLossRate;
+		endPointMaker = (Node2D)GetNode($"layout_{levelNum}").GetChild(-1);
+		endPoint.Position = endPointMaker.Position;
+		GD.Print(endPointMaker);
 		oxyTimer.Start();
 	}
 

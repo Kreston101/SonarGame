@@ -12,7 +12,7 @@ gradient = SubResource("Gradient_tvlqv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_071iv"]
 size = Vector2(100, 100)
 
-[node name="StaticBody2D" type="StaticBody2D" groups=["Terrain"]]
+[node name="Wall" type="StaticBody2D" groups=["Terrain"]]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 scale = Vector2(100, 100)

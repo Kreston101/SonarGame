@@ -1,0 +1,226 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsnbjqd7o6yko"]
+
+[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="1_udure"]
+[ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="2_0axh2"]
+
+[sub_resource type="Curve2D" id="Curve2D_q84tl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_k61e5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_1oni8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 349, -139, 0, 0, 0, 0, 113, -269, 0, 0, 0, 0, -73, -139, 0, 0, 0, 0, 3, 5, 0, 0, 0, 0, 207, 85, 0, 0, 0, 0, 349, -139)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_skfgy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2249, 739, 0, 0, 0, 0, 2523, 514, 0, 0, 0, 0, 2790, 760, 0, 0, 0, 0, 2698, 896, 0, 0, 0, 0, 2527, 817, 0, 0, 0, 0, 2455, 1252, 0, 0, 0, 0, 1693, 710, 0, 0, 0, 0, 2249, 739)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_ry0ri"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2576, 689, 0, 0, 0, 0, 3010, 349, 0, 0, 0, 0, 2946, 67, 0, 0, 0, 0, 3578, -64, 0, 0, 0, 0, 3420, 269, 0, 0, 0, 0, 3191, 554, 0, 0, 0, 0, 2576, 689)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_jv8df"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1920, 2230, 0, 0, 0, 0, 1933, 2754, 0, 0, 0, 0, 2660, 3013, 0, 0, 0, 0, 2492, 2394, 0, 0, 0, 0, 1920, 2230)
+}
+point_count = 5
+
+[node name="layout_1" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_udure")]
+position = Vector2(-399, 169)
+rotation = -1.31598
+scale = Vector2(11.355, 1)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_udure")]
+position = Vector2(142, -334)
+scale = Vector2(7.235, 1)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("1_udure")]
+position = Vector2(567, -65)
+rotation = 1.1973
+scale = Vector2(6.32, 1)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("1_udure")]
+position = Vector2(111, 820)
+rotation = 0.120428
+scale = Vector2(13.63, 1)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("1_udure")]
+position = Vector2(1135, 336)
+rotation = 0.23911
+scale = Vector2(10.215, 1)
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("1_udure")]
+position = Vector2(1302, 924)
+rotation = 0.0383972
+scale = Vector2(11.2, 1)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("1_udure")]
+position = Vector2(2110, 404)
+rotation = -0.120428
+scale = Vector2(9.925, 1)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("1_udure")]
+position = Vector2(2767, -9.15527e-05)
+rotation = 0.479966
+scale = Vector2(1, 8.375)
+
+[node name="StaticBody2D9" parent="." instance=ExtResource("1_udure")]
+position = Vector2(3389, -319)
+rotation = 0.127409
+scale = Vector2(8.49, 1)
+
+[node name="StaticBody2D10" parent="." instance=ExtResource("1_udure")]
+position = Vector2(3945, 102)
+rotation = -0.359538
+scale = Vector2(1, 8.125)
+
+[node name="StaticBody2D11" parent="." instance=ExtResource("1_udure")]
+position = Vector2(3642, 686)
+rotation = -0.47822
+scale = Vector2(9.935, 1)
+
+[node name="StaticBody2D12" parent="." instance=ExtResource("1_udure")]
+position = Vector2(1726, 1502)
+rotation = 0.23911
+scale = Vector2(1, 11.635)
+
+[node name="StaticBody2D13" parent="." instance=ExtResource("1_udure")]
+position = Vector2(2591, 1566)
+rotation = 0.118682
+scale = Vector2(1, 11.635)
+
+[node name="StaticBody2D14" parent="." instance=ExtResource("1_udure")]
+position = Vector2(2963, 969)
+rotation = -0.244346
+scale = Vector2(5.785, 1)
+
+[node name="StaticBody2D15" parent="." instance=ExtResource("1_udure")]
+position = Vector2(1302, 2086)
+rotation = -0.120428
+scale = Vector2(6.365, 1)
+
+[node name="StaticBody2D16" parent="." instance=ExtResource("1_udure")]
+position = Vector2(820, 2356)
+rotation = 0.598648
+scale = Vector2(1, 5.81)
+
+[node name="StaticBody2D17" parent="." instance=ExtResource("1_udure")]
+position = Vector2(727, 2868)
+rotation = -0.23911
+scale = Vector2(1, 5.585)
+
+[node name="StaticBody2D18" parent="." instance=ExtResource("1_udure")]
+position = Vector2(1477, 3250)
+rotation = 0.120428
+scale = Vector2(13.405, 1)
+
+[node name="StaticBody2D19" parent="." instance=ExtResource("1_udure")]
+position = Vector2(2784, 3256)
+rotation = -0.118682
+scale = Vector2(13.195, 1)
+
+[node name="StaticBody2D20" parent="." instance=ExtResource("1_udure")]
+position = Vector2(3098, 2400)
+rotation = 0.479966
+scale = Vector2(13.01, 1)
+
+[node name="StaticBody2D21" parent="." instance=ExtResource("1_udure")]
+position = Vector2(3577, 2968)
+rotation = 0.392699
+scale = Vector2(1, 5.145)
+
+[node name="Path2D2" type="Path2D" parent="."]
+position = Vector2(1058, 2588)
+curve = SubResource("Curve2D_q84tl")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D2"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School1" parent="Path2D2/PathFollow2D" instance=ExtResource("2_0axh2")]
+position = Vector2(0.482666, 0.875732)
+rotation = 2.6381
+speed = 100.0
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(1064, 2728)
+curve = SubResource("Curve2D_k61e5")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School2" parent="Path2D/PathFollow2D" instance=ExtResource("2_0axh2")]
+position = Vector2(0.482666, 0.875977)
+rotation = 2.6381
+speed = 100.0
+
+[node name="Path2D3" type="Path2D" parent="."]
+position = Vector2(1185, 2733)
+curve = SubResource("Curve2D_1oni8")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D3"]
+position = Vector2(349, -139)
+rotation = -2.6381
+rotates = false
+
+[node name="School3" parent="Path2D3/PathFollow2D" instance=ExtResource("2_0axh2")]
+position = Vector2(0.482422, 0.875732)
+rotation = 2.6381
+speed = 100.0
+
+[node name="Path2D4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_skfgy")
+metadata/_edit_group_ = true
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D4"]
+position = Vector2(2249, 739)
+rotation = -0.687516
+
+[node name="Fish1" parent="Path2D4/PathFollow2D" instance=ExtResource("2_0axh2")]
+speed = 100.0
+
+[node name="Path2D5" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ry0ri")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D5"]
+position = Vector2(2576, 689)
+rotation = -0.664543
+
+[node name="Fish2" parent="Path2D5/PathFollow2D" instance=ExtResource("2_0axh2")]
+speed = 100.0
+
+[node name="Path2D6" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jv8df")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D6"]
+position = Vector2(1920, 2230)
+rotation = 1.54599
+
+[node name="Fish3" parent="Path2D6/PathFollow2D" instance=ExtResource("2_0axh2")]
+speed = 100.0
+
+[node name="EndPointMark" type="Node2D" parent="."]
+position = Vector2(3402, 2883)

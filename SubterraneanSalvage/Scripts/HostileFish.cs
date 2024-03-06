@@ -9,7 +9,7 @@ public partial class HostileFish : CharacterBody2D
 {
 	[Export] public float speed;
 	[Export] public RayCast2D raycast;
-	[Export] public Line2D debugLine;
+	//[Export] public Line2D debugLine;
 	public bool chasing = false;
 	public Vector2 targetPos;
 	public Vector2 direction;
