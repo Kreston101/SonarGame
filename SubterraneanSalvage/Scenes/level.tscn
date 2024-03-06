@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=8 format=3 uid="uid://ch8njdwl883wa"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
-[ext_resource type="PackedScene" uid="uid://bsnbjqd7o6yko" path="res://Scenes/layout_1.tscn" id="3_8tbfo"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="5_wc8r5"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="6_4ua16"]
@@ -21,7 +20,7 @@ endPoint = NodePath("EndPoint")
 UI = NodePath("CanvasLayer")
 oxyTimer = NodePath("CanvasLayer/OxygenTimer")
 oxyLossRate = 10
-levelNum = 1
+levelNum = 2
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
@@ -40,8 +39,6 @@ position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
 texture = SubResource("GradientTexture1D_3bvth")
 metadata/_edit_lock_ = true
-
-[node name="layout_1" parent="." instance=ExtResource("3_8tbfo")]
 
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
 position = Vector2(-1500, 0)

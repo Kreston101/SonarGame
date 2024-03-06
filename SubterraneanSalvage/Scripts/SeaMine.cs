@@ -11,7 +11,8 @@ public partial class SeaMine : Area2D
 	public override void _Ready()
 	{
 		Hide();
-		lvlControlNode = GetParent<Node2D>();
+		lvlControlNode = (Node2D)GetTree().Root.GetChild(0); //GetOwner<Node2D>();
+		GD.Print(lvlControlNode);
 	}
 
 	private void OnPlayerEntered(Node2D body)
@@ -27,11 +28,17 @@ public partial class SeaMine : Area2D
 
 	private void OnPassiveSonarEnter(Area2D area)
 	{
-		Show();
+		if (area.IsInGroup("PassiveSonar"))
+		{
+			Show();
+		}
 	}
 
 	private void OnPassiveSonarExit(Area2D area)
 	{
-		Hide();
+		if (area.IsInGroup("PassiveSonar"))
+		{
+			Hide();
+		}     
 	}
 }

@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 public partial class LevelManager : Node2D
 {
@@ -14,20 +16,28 @@ public partial class LevelManager : Node2D
 	//stage collectibles
 
 	public float oxyTimeLeft;
+	public List<Node> layouts;
 
 	public PlayerSubTest playerScript;
 	private UIControl UIScript;
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		Node scene = ResourceLoader.Load<PackedScene>($"res://Scenes/layouts/layout_{levelNum}.tscn").Instantiate();
+
+		AddChild(scene);
+		scene.Name = $"layout_{levelNum}";
+		GD.Print("loaded layout");
+
+		endPointMaker = (Node2D)GetNode($"layout_{levelNum}").GetChild(-1);
+		endPoint.Position = endPointMaker.Position;
+		GD.Print(endPointMaker);
+
 		playerScript = player as PlayerSubTest;
 		UIScript = UI as UIControl;
 		oxyTimer.WaitTime = stageOxy;
 		UIScript.punishment = oxyLossRate;
-		endPointMaker = (Node2D)GetNode($"layout_{levelNum}").GetChild(-1);
-		endPoint.Position = endPointMaker.Position;
-		GD.Print(endPointMaker);
+
 		oxyTimer.Start();
 	}
 
