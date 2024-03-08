@@ -43,7 +43,7 @@ public partial class UIControl : CanvasLayer
 		{
 			oxyTimer.Stop();
 			oxyBar.Value = 0;
-			OnOxygenTimerTimeout();
+			ShowGameOver();
 			LevelManager parent = GetParent() as LevelManager;
 			parent.ForceTimeout();
 			GD.Print("time out called UI");
@@ -51,12 +51,12 @@ public partial class UIControl : CanvasLayer
 		redTint.Color = red;
 	}
 
-	private void OnEndPointEntered(Node2D body)
+	public void ShowLevelCleared()
 	{
 		lvlClear.Show();
 	}
 
-	private void OnOxygenTimerTimeout()
+	public void ShowGameOver()
 	{
 		gameOver.Show();
 	}

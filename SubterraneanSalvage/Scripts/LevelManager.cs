@@ -20,9 +20,28 @@ public partial class LevelManager : Node2D
 
 	public PlayerSubTest playerScript;
 	private UIControl UIScript;
+	private Node2D currentLayout;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		playerScript = player as PlayerSubTest;
+		UIScript = UI as UIControl;
+
+		LoadLevel();
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		oxyTimeLeft = (float)oxyTimer.TimeLeft;
+		UIScript.playerSpeed = playerScript.speedMultiplier;
+	}
+
+	public void LoadLevel()
+	{
+		oxyTimer.WaitTime = stageOxy;
+		UIScript.punishment = oxyLossRate;
+		
 		Node scene = ResourceLoader.Load<PackedScene>($"res://Scenes/layouts/layout_{levelNum}.tscn").Instantiate();
 
 		AddChild(scene);
@@ -33,25 +52,18 @@ public partial class LevelManager : Node2D
 		endPoint.Position = endPointMaker.Position;
 		GD.Print(endPointMaker);
 
-		playerScript = player as PlayerSubTest;
-		UIScript = UI as UIControl;
-		oxyTimer.WaitTime = stageOxy;
-		UIScript.punishment = oxyLossRate;
+		player.GlobalPosition = Vector2.Zero;
 
 		oxyTimer.Start();
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		oxyTimeLeft = (float)oxyTimer.TimeLeft;
-		UIScript.playerSpeed = playerScript.speedMultiplier;
+		scene = currentLayout;
 	}
 
 	private void RootOnOxyTimerTimeout()
 	{
 		Engine.TimeScale = 0;
 		player.Modulate = new Color(1, 0, 0);
+		UIScript.ShowGameOver();
 		GD.Print("dead");
 	}
 
@@ -65,5 +77,13 @@ public partial class LevelManager : Node2D
 	public void DamagePlayer()
 	{
 		UIScript.DepleteOxy();
+	}
+
+	private void OnEndPointEntered(Node2D body)
+	{
+		UIScript.ShowLevelCleared();
+		levelNum += 1;
+		GetChild(-1).QueueFree();
+		LoadLevel();
 	}
 }

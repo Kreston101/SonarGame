@@ -81,5 +81,3 @@ theme_override_font_sizes/font_size = 54
 text = "Drowned"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="timeout" from="OxygenTimer" to="." method="OnOxygenTimerTimeout"]
