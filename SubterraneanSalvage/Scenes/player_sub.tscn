@@ -21,6 +21,7 @@ radius = 12.8062
 radius = 192.0
 
 [node name="PlayerSub" type="CharacterBody2D" node_paths=PackedStringArray("noiseArea") groups=["Player"]]
+process_mode = 1
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 3.14159

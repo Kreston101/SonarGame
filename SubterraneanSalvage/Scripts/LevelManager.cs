@@ -21,6 +21,9 @@ public partial class LevelManager : Node2D
 	public PlayerSubTest playerScript;
 	private UIControl UIScript;
 	private Node2D currentLayout;
+	private bool levelLoaded = false;
+	private float loadLevelTimer = 0f;
+	private bool playerDead = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -35,10 +38,23 @@ public partial class LevelManager : Node2D
 	{
 		oxyTimeLeft = (float)oxyTimer.TimeLeft;
 		UIScript.playerSpeed = playerScript.speedMultiplier;
+
+		if (levelLoaded == false)
+		{
+			loadLevelTimer += (float)delta;
+			if (loadLevelTimer > 5f)
+			{
+				LoadLevel();
+			}
+		}
 	}
 
 	public void LoadLevel()
 	{
+		UIScript.HideLevelCleared();
+		GD.Print("loading level");
+		loadLevelTimer = 0f;
+
 		oxyTimer.WaitTime = stageOxy;
 		UIScript.punishment = oxyLossRate;
 		
@@ -46,24 +62,29 @@ public partial class LevelManager : Node2D
 
 		AddChild(scene);
 		scene.Name = $"layout_{levelNum}";
-		GD.Print("loaded layout");
+		GD.Print(scene.Name);
 
 		endPointMaker = (Node2D)GetNode($"layout_{levelNum}").GetChild(-1);
 		endPoint.Position = endPointMaker.Position;
-		GD.Print(endPointMaker);
+		endPoint.Show();
 
 		player.GlobalPosition = Vector2.Zero;
+		player.Show();
+		playerDead = false;
 
 		oxyTimer.Start();
 
-		scene = currentLayout;
+		currentLayout = (Node2D)scene;
+		GD.Print(currentLayout.Name + " loaded");
+		levelLoaded = true;
 	}
 
 	private void RootOnOxyTimerTimeout()
 	{
-		Engine.TimeScale = 0;
+		GetTree().Paused = true;
 		player.Modulate = new Color(1, 0, 0);
 		UIScript.ShowGameOver();
+		playerDead = true;
 		GD.Print("dead");
 	}
 
@@ -84,6 +105,8 @@ public partial class LevelManager : Node2D
 		UIScript.ShowLevelCleared();
 		levelNum += 1;
 		GetChild(-1).QueueFree();
-		LoadLevel();
+		player.Hide();
+		endPoint.Hide();
+		levelLoaded = false;
 	}
 }

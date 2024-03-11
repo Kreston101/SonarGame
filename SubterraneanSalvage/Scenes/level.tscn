@@ -14,6 +14,7 @@ colors = PackedColorArray(0.298039, 0.298039, 0.298039, 1)
 gradient = SubResource("Gradient_n1mmo")
 
 [node name="LevelManager" type="Node2D" node_paths=PackedStringArray("player", "endPoint", "UI", "oxyTimer")]
+process_mode = 3
 script = ExtResource("1_ewlfb")
 player = NodePath("PlayerSub")
 endPoint = NodePath("EndPoint")
@@ -41,6 +42,8 @@ metadata/_edit_lock_ = true
 
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
 position = Vector2(-1500, 0)
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="." method="OnEndPointEntered"]

@@ -8,6 +8,7 @@
 radius = 20.025
 
 [node name="Area2D" type="Area2D"]
+process_mode = 1
 script = ExtResource("1_lbnv1")
 
 [node name="Body" type="MeshInstance2D" parent="."]

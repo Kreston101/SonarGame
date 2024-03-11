@@ -60,4 +60,9 @@ public partial class UIControl : CanvasLayer
 	{
 		gameOver.Show();
 	}
+
+	public void HideLevelCleared()
+	{
+		lvlClear.Hide();
+	}
 }
