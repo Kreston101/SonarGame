@@ -34,7 +34,7 @@ public partial class UIControl : CanvasLayer
 
 	public void DepleteOxy()
 	{
-		GD.Print("lost oxygen");
+		//GD.Print("lost oxygen");
 		if(oxyTimer.TimeLeft - (playerSpeed * punishment) > 0)
 		{
 			oxyTimer.Start(oxyTimer.TimeLeft - (playerSpeed * punishment));
@@ -46,7 +46,7 @@ public partial class UIControl : CanvasLayer
 			ShowGameOver();
 			LevelManager parent = GetParent() as LevelManager;
 			parent.ForceTimeout();
-			GD.Print("time out called UI");
+			//GD.Print("time out called UI");
 		}
 		redTint.Color = red;
 	}
@@ -64,5 +64,15 @@ public partial class UIControl : CanvasLayer
 	public void HideLevelCleared()
 	{
 		lvlClear.Hide();
+	}
+
+	public void HideGameOver()
+	{
+		gameOver.Hide();
+	}
+
+	public void ResetTint()
+	{
+		redTint.Color = clear;
 	}
 }

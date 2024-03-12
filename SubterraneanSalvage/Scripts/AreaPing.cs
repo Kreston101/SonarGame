@@ -47,7 +47,7 @@ public partial class AreaPing : Area2D
 
 		if (body.IsInGroup("Hostile"))
 		{
-			GD.Print("alerted");
+			//GD.Print("alerted");
 			HostileFish madFish = body as HostileFish;
 			madFish.ChasePlayer(origin);
 		}

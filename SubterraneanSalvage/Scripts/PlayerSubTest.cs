@@ -89,7 +89,7 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 		else
 		{
-			GD.Print("current =" + Velocity + " " + makingNoise);
+			//GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = true;
 		}
 
@@ -172,7 +172,7 @@ public partial class PlayerSubTest : CharacterBody2D
 		{
 			if(makingNoise == true)
 			{
-				GD.Print("alerted");
+				//GD.Print("alerted");
 				HostileFish madFish = body as HostileFish;
 				madFish.ChasePlayer(GlobalPosition);
 				madFish.withinNoise = true;
@@ -188,6 +188,12 @@ public partial class PlayerSubTest : CharacterBody2D
 			HostileFish madFish = body as HostileFish;
 			madFish.withinNoise = false;
 		}
+	}
+
+	public void ResetSpeed()
+	{
+		speedMultiplier = 1f;
+		noiseArea.Scale -= new Vector2(1f, 1f);
 	}
 
 	//public void RangedPing()

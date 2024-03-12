@@ -14,7 +14,7 @@ public partial class PassiveCreature : Area2D
 	{
 		followPath = (PathFollow2D)GetParent();
 		Hide();
-		GD.Print($"{followPath} {Name}");
+		//GD.Print($"{followPath} {Name}");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

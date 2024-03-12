@@ -12,7 +12,7 @@ public partial class SeaMine : Area2D
 	{
 		Hide();
 		lvlControlNode = (Node2D)GetTree().Root.GetChild(0); //GetOwner<Node2D>();
-		GD.Print(lvlControlNode);
+		//GD.Print(lvlControlNode);
 	}
 
 	private void OnPlayerEntered(Node2D body)
