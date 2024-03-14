@@ -21,10 +21,11 @@ endPoint = NodePath("EndPoint")
 UI = NodePath("CanvasLayer")
 oxyTimer = NodePath("CanvasLayer/OxygenTimer")
 oxyLossRate = 10
-levelNum = 2
+levelNum = 1
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
+visible = false
 
 [node name="PlayerSub" parent="." node_paths=PackedStringArray("levelManager") instance=ExtResource("3_bep4k")]
 rangedPingObj = ExtResource("5_wc8r5")
@@ -34,6 +35,7 @@ levelManager = NodePath("..")
 metadata/_edit_lock_ = true
 
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub/Camera2D"]
+visible = false
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
@@ -43,7 +45,7 @@ metadata/_edit_lock_ = true
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
 position = Vector2(-1500, 0)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="layout_0" type="Node2D" parent="."]
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="." method="OnEndPointEntered"]
