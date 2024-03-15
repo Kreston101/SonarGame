@@ -43,9 +43,11 @@ public partial class LevelManager : Node2D
 
 		if (levelLoaded == false)
 		{
+			GD.Print("loading level");
 			loadLevelTimer += (float)delta;
 			if (loadLevelTimer > 5f)
 			{
+				GD.Print("called loader");
 				LoadLevel();
 			}
 		}
@@ -62,6 +64,8 @@ public partial class LevelManager : Node2D
 
 	public void LoadLevel()
 	{
+		GetTree().Paused = false;
+		
 		player.GlobalPosition = Vector2.Zero;
 
 		UIScript.HideLevelCleared();
@@ -86,7 +90,6 @@ public partial class LevelManager : Node2D
 
 		player.Show();
 
-		GetTree().Paused = false;
 		oxyTimer.Start();
 
 		currentLayout = (Node2D)scene;
@@ -118,10 +121,12 @@ public partial class LevelManager : Node2D
 
 	private void OnEndPointEntered(Node2D body)
 	{
+		GD.Print("level cleared");
 		GetTree().Paused = true;
 		UIScript.ShowLevelCleared();
 		levelNum += 1;
 		GetChild(-1).QueueFree();
+		levelLoaded = false;
 		player.Hide();
 		endPoint.Hide();
 	}

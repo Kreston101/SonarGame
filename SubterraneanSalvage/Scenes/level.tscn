@@ -25,7 +25,6 @@ levelNum = 1
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
-visible = false
 
 [node name="PlayerSub" parent="." node_paths=PackedStringArray("levelManager") instance=ExtResource("3_bep4k")]
 rangedPingObj = ExtResource("5_wc8r5")
@@ -44,8 +43,6 @@ metadata/_edit_lock_ = true
 
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
 position = Vector2(-1500, 0)
-
-[node name="layout_0" type="Node2D" parent="."]
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="." method="OnEndPointEntered"]
