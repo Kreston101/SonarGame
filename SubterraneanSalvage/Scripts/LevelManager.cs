@@ -121,15 +121,18 @@ public partial class LevelManager : Node2D
 
 	private void OnEndPointEntered(Node2D body)
 	{
-		GD.Print("level cleared");
-		GetTree().Paused = true;
-		UIScript.ShowLevelCleared();
-		levelNum += 1;
-		GetChild(-1).QueueFree();
-		levelLoaded = false;
-		player.Hide();
-		endPoint.Hide();
-	}
+		if (body.IsInGroup("Player"))
+		{
+			GD.Print("level cleared");
+			GetTree().Paused = true;
+			UIScript.ShowLevelCleared();
+			levelNum += 1;
+			GetChild(-1).QueueFree();
+			levelLoaded = false;
+			player.Hide();
+			endPoint.Hide();
+		}	
+	}	
 
 	private void ReloadLevel()
 	{

@@ -18,7 +18,7 @@ height = 150.0
 radius = 12.8
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x0pbd"]
-radius = 192.0
+radius = 192.167
 
 [node name="PlayerSub" type="CharacterBody2D" node_paths=PackedStringArray("noiseArea") groups=["Player"]]
 process_mode = 1
@@ -103,7 +103,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
 script = ExtResource("4_lhgqj")
 
-[node name="PassiveSonar" type="Area2D" parent="." groups=["PassiveSonar"]]
+[node name="PassiveSonar" type="Area2D" parent="."]
 scale = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveSonar"]

@@ -166,35 +166,36 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 	}
 
-	private void OnBodyEntered(Node2D body)
-	{
-		if (body.IsInGroup("Hostile"))
-		{
-			if(makingNoise == true)
-			{
-				//GD.Print("alerted");
-				HostileFish madFish = body as HostileFish;
-				madFish.ChasePlayer(GlobalPosition);
-				madFish.withinNoise = true;
-			}
-		}
-	}
-
-	private void OnBodyExit(Node2D body)
-	{
-		if (body.IsInGroup("Hostile"))
-		{
-			GD.Print("outran");
-			HostileFish madFish = body as HostileFish;
-			madFish.withinNoise = false;
-		}
-	}
-
 	public void ResetSpeed()
 	{
 		speedMultiplier = 1f;
 		noiseArea.Scale -= new Vector2(1f, 1f);
 	}
+
+	//private void OnBodyEntered(Node2D body)
+	//{
+	//	GD.Print("detct");
+	//	if (body.IsInGroup("Hostile"))
+	//	{
+	//		if (makingNoise == true)
+	//		{
+	//			GD.Print("alerted");
+	//			HostileFish madFish = body as HostileFish;
+	//			madFish.ChasePlayer(GlobalPosition);
+	//			madFish.withinNoise = true;
+	//		}
+	//	}
+	//}
+
+	//private void OnBodyExit(Node2D body)
+	//{
+	//	if (body.IsInGroup("Hostile"))
+	//	{
+	//		GD.Print("outran");
+	//		HostileFish madFish = body as HostileFish;
+	//		madFish.withinNoise = false;
+	//	}
+	//}
 
 	//public void RangedPing()
 	//{
@@ -216,4 +217,16 @@ public partial class PlayerSubTest : CharacterBody2D
 	//{
 	//	GD.Print("detection" + area.Name);
 	//}
+
+	private void OnBodyEntered(Node2D body)
+	{
+		GD.Print("detct");
+	}
+
+
+	private void OnBodyExit(Node2D body)
+	{
+		GD.Print("run");
+	}
+
 }

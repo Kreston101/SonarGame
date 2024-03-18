@@ -28,17 +28,6 @@ public partial class SeaMine : Area2D
 
 	private void OnPassiveSonarEnter(Area2D area)
 	{
-		if (area.IsInGroup("PassiveSonar"))
-		{
-			Show();
-		}
-	}
-
-	private void OnPassiveSonarExit(Area2D area)
-	{
-		if (area.IsInGroup("PassiveSonar"))
-		{
-			Hide();
-		}     
+		Show();
 	}
 }

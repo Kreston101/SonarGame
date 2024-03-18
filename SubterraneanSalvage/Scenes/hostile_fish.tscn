@@ -17,10 +17,10 @@ position = Vector2(-1.90735e-06, -1.90735e-06)
 scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("2_2hfp7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_6445h")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
-
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 75)
 hit_from_inside = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6445h")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)

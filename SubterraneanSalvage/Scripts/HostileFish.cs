@@ -7,7 +7,7 @@ using System.Reflection;
 
 public partial class HostileFish : CharacterBody2D
 {
-	[Export] public float speed;
+	[Export] public float speed = 100f;
 	[Export] public RayCast2D raycast;
 	//[Export] public Line2D debugLine;
 	public bool chasing = false;
@@ -21,7 +21,7 @@ public partial class HostileFish : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		lvlMan = GetOwner<Node2D>() as LevelManager;
+		lvlMan = (LevelManager)GetTree().Root.GetChild(0);
 		CreateDirection();
 	}
 
@@ -32,14 +32,20 @@ public partial class HostileFish : CharacterBody2D
 		{
 			if (timer < 3f)
 			{
-				//GD.Print("patrol");
+				GD.Print("patrol");
 				timer += (float)delta;
 				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				if (collision != null)
 				{
 					CreateDirection();
 					timer = 0f;
-				}
+					Node2D checkGroup = (Node2D)collision.GetCollider();
+					if (checkGroup.IsInGroup("Player"))
+					{
+						GD.Print("Nom");
+						lvlMan.ForceTimeout();
+					}
+				}    
 			}
 			else
 			{
@@ -51,14 +57,32 @@ public partial class HostileFish : CharacterBody2D
 		{
 			if (withinNoise)
 			{
+				GD.Print("heard sound");
 				ChasePlayer(lvlMan.player.GlobalPosition);
-				MoveAndCollide(direction.Normalized() * speed * (float)delta);
-				//GD.Print("chasing sound");
+				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				if (collision != null)
+				{
+					Node2D checkGroup = (Node2D)collision.GetCollider();
+					if (checkGroup.IsInGroup("Player"))
+					{
+						GD.Print("Nom");
+						lvlMan.ForceTimeout();
+					}
+				}
 			}
 			else
 			{
-				//GD.Print("lost the sounds");
-				MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				GD.Print("lost the sounds");
+				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
+				if (collision != null)
+				{
+					Node2D checkGroup = (Node2D)collision.GetCollider();
+					if (checkGroup.IsInGroup("Player"))
+					{
+						GD.Print("Nom");
+						lvlMan.ForceTimeout();
+					}
+				}
 				timer += (float)delta;
 				Vector2 distToLastHeard = targetPos - Position;
 				//GD.Print(distToLastHeard);
@@ -66,6 +90,7 @@ public partial class HostileFish : CharacterBody2D
 				{
 					chasing = false;
 					timer = 0;
+					speed = 100f;
 				}
 			}
 		}
@@ -127,9 +152,10 @@ public partial class HostileFish : CharacterBody2D
 
 	public void ChasePlayer(Vector2 soundOrigin)
 	{
+		speed = 300f;
 		chasing = true;
 		targetPos = soundOrigin;
 		direction = targetPos - Position;
-		//GD.Print("chase player");
+		GD.Print("chase player called");
 	}
 }

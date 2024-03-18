@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfg7cl6nqa1ay"]
+
+[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="1_mpytk"]
+[ext_resource type="PackedScene" uid="uid://cv6g0mefpfnl" path="res://Scenes/hostile_fish.tscn" id="2_18ixj"]
+
+[node name="layout_3" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-248, -109, 20, 250, 277, 272, 390, 548, 749, 578, 990, 212, 1073, 658, 1489, 20, 1564, 654, 1847, 314, 1919, 688, 2629, -64.0001, 2629, 948, -429, 952, -426, -392, -222, -758, 2636, -766, 2637, -334, 2520, -592, 2356, -698, 2217, -586, 1995, -346, 1846, -577, 1444, -511, 1168, -271, 988, -556, 737, -184, 326, -157, 116, -268, -54, -218)
+
+[node name="Wall" parent="StaticBody2D" instance=ExtResource("1_mpytk")]
+position = Vector2(2682, -196)
+scale = Vector2(1, 5.555)
+
+[node name="HostileFish" parent="." instance=ExtResource("2_18ixj")]
+position = Vector2(1803, -467)
+
+[node name="HostileFish2" parent="." instance=ExtResource("2_18ixj")]
+position = Vector2(1489, -406)
+
+[node name="HostileFish3" parent="." instance=ExtResource("2_18ixj")]
+position = Vector2(1118, 403)
+
+[node name="HostileFish4" parent="." instance=ExtResource("2_18ixj")]
+position = Vector2(1670, 343)
+
+[node name="EndPointMaker" type="Node2D" parent="."]
+position = Vector2(2394, -565)
