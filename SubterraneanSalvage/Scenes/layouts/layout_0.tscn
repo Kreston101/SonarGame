@@ -6,20 +6,20 @@
 [node name="layout_0" type="Node2D"]
 
 [node name="Wall" parent="." instance=ExtResource("1_m30we")]
-position = Vector2(-270, -3)
-scale = Vector2(1, 8)
+position = Vector2(-249, 425)
+scale = Vector2(1, 17.49)
 
 [node name="Wall2" parent="." instance=ExtResource("1_m30we")]
 position = Vector2(760, -355)
 scale = Vector2(20, 1)
 
 [node name="Wall3" parent="." instance=ExtResource("1_m30we")]
-position = Vector2(760, 350)
+position = Vector2(754, 1210)
 scale = Vector2(20, 1)
 
 [node name="Wall4" parent="." instance=ExtResource("1_m30we")]
-position = Vector2(1709, 0)
-scale = Vector2(1, 8)
+position = Vector2(1705, 428)
+scale = Vector2(1, 16.635)
 
 [node name="HostileFish" parent="." instance=ExtResource("2_fmcle")]
 position = Vector2(930, -193)

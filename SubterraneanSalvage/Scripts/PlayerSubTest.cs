@@ -68,9 +68,7 @@ public partial class PlayerSubTest : CharacterBody2D
 
 		if (Input.IsActionJustReleased("Ping"))
 		{
-			//Node2D mark = (Node2D)rangedPingObj.Instantiate();
-			//AddSibling(mark);
-			//mark.Position = GlobalPosition;
+			//PingMarker();
 			SubPing(pingHoldTime);
 			pingHoldTime = 0;
 		}
@@ -89,12 +87,12 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 		else
 		{
-			//GD.Print("current =" + Velocity + " " + makingNoise);
+			GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = true;
 		}
 
 		//handle collision damage
-		KinematicCollision2D collision = MoveAndCollide(Velocity * (float)delta);
+		KinematicCollision2D collision = MoveAndCollide(Velocity * speedMultiplier * (float)delta);
 		if (collision != null)
 		{
 			GD.Print("collision");
@@ -126,7 +124,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	public void GetInput()
 	{
 		Vector2 inputDirection = Input.GetVector("Left", "Right", "Up", "Down");
-		Velocity = inputDirection.Normalized() * speed * speedMultiplier;
+		Velocity = inputDirection.Normalized() * speed;
 		if(Velocity.X < 0)
 		{
 			subBody.Scale = new Vector2(-1f, 1f);
@@ -172,30 +170,12 @@ public partial class PlayerSubTest : CharacterBody2D
 		noiseArea.Scale -= new Vector2(1f, 1f);
 	}
 
-	//private void OnBodyEntered(Node2D body)
-	//{
-	//	GD.Print("detct");
-	//	if (body.IsInGroup("Hostile"))
-	//	{
-	//		if (makingNoise == true)
-	//		{
-	//			GD.Print("alerted");
-	//			HostileFish madFish = body as HostileFish;
-	//			madFish.ChasePlayer(GlobalPosition);
-	//			madFish.withinNoise = true;
-	//		}
-	//	}
-	//}
-
-	//private void OnBodyExit(Node2D body)
-	//{
-	//	if (body.IsInGroup("Hostile"))
-	//	{
-	//		GD.Print("outran");
-	//		HostileFish madFish = body as HostileFish;
-	//		madFish.withinNoise = false;
-	//	}
-	//}
+	public void PingMarker()
+	{
+		Node2D mark = (Node2D)rangedPingObj.Instantiate();
+		AddSibling(mark);
+		mark.Position = GlobalPosition;
+	}
 
 	//public void RangedPing()
 	//{
@@ -220,13 +200,27 @@ public partial class PlayerSubTest : CharacterBody2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		GD.Print("detct");
+		GD.Print("detect " + body.Name);
+		if (body.IsInGroup("Hostile"))
+		{
+			if (makingNoise == true)
+			{
+				GD.Print("alerted");
+				HostileFish madFish = body as HostileFish;
+				madFish.ChasePlayer(GlobalPosition);
+				madFish.withinNoise = true;
+			}
+		}
 	}
-
 
 	private void OnBodyExit(Node2D body)
 	{
-		GD.Print("run");
+		GD.Print("exit " + body.Name);
+		if (body.IsInGroup("Hostile"))
+		{
+			GD.Print("outran");
+			HostileFish madFish = body as HostileFish;
+			madFish.withinNoise = false;
+		}
 	}
-
 }

@@ -8,8 +8,8 @@ radius = 48.0
 
 [node name="HostileFish" type="CharacterBody2D" node_paths=PackedStringArray("raycast") groups=["Hostile"]]
 process_mode = 1
+motion_mode = 1
 script = ExtResource("1_s5n0f")
-speed = 250.0
 raycast = NodePath("RayCast2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

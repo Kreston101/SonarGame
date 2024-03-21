@@ -7,7 +7,7 @@ using System.Reflection;
 
 public partial class HostileFish : CharacterBody2D
 {
-	[Export] public float speed = 100f;
+	public float speed = 150f;
 	[Export] public RayCast2D raycast;
 	//[Export] public Line2D debugLine;
 	public bool chasing = false;
@@ -38,14 +38,14 @@ public partial class HostileFish : CharacterBody2D
 				if (collision != null)
 				{
 					CreateDirection();
-					timer = 0f;
 					Node2D checkGroup = (Node2D)collision.GetCollider();
 					if (checkGroup.IsInGroup("Player"))
 					{
 						GD.Print("Nom");
 						lvlMan.ForceTimeout();
 					}
-				}    
+					timer = 0f;
+				}
 			}
 			else
 			{
@@ -53,12 +53,13 @@ public partial class HostileFish : CharacterBody2D
 				timer = 0f;
 			}
 		}
-		else //chasing
+		else
 		{
 			if (withinNoise)
 			{
 				GD.Print("heard sound");
 				ChasePlayer(lvlMan.player.GlobalPosition);
+				MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				if (collision != null)
 				{
@@ -72,7 +73,8 @@ public partial class HostileFish : CharacterBody2D
 			}
 			else
 			{
-				GD.Print("lost the sounds");
+				//GD.Print("heard/lost sound");
+				MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				KinematicCollision2D collision = MoveAndCollide(direction.Normalized() * speed * (float)delta);
 				if (collision != null)
 				{
@@ -85,60 +87,15 @@ public partial class HostileFish : CharacterBody2D
 				}
 				timer += (float)delta;
 				Vector2 distToLastHeard = targetPos - Position;
-				//GD.Print(distToLastHeard);
-				if (timer > 3f || distToLastHeard <= direction.Normalized())
+				GD.Print(distToLastHeard.Length());
+				if (timer > 3f || distToLastHeard.Length() <= 15f)
 				{
 					chasing = false;
 					timer = 0;
-					speed = 100f;
+					speed = 150f;
 				}
 			}
 		}
-
-		//if (chasing)
-		//{
-		//	Position += direction.Normalized() * speed * (float)delta;
-		//	if (withinNoise)
-		//	{
-		//		ChasePlayer(lvlMan.player.GlobalPosition);
-		//	}
-		//	else
-		//	{
-		//		//GD.Print("lag mode");
-		//		timer += (float)delta;
-		//		if (timer > 3f)
-		//		{
-		//			chasing = false;
-		//			timer = 0;
-		//		}
-		//	}
-		//}
-		//else
-		//{
-		//	if(timer < 3f)
-		//	{
-		//		Position += direction * speed * (float)delta;
-		//		timer += (float)delta;
-		//	}
-		//	else
-		//	{
-		//		CreateDirection();
-		//		raycast.TargetPosition = direction * 75f;
-		//		debugLine.ClearPoints();
-		//		debugLine.AddPoint(Vector2.Zero);
-		//		debugLine.AddPoint(raycast.TargetPosition);
-		//		raycast.ForceRaycastUpdate();
-		//		if (raycast.IsColliding())
-		//		{
-		//			GD.Print("raycast hit");
-		//			direction = Vector2.Zero;
-		//		}
-		//		else
-		//		{
-		//			timer = 0f;
-		//		}
-		//	}
-		//}
 	}
 
 	private void CreateDirection()
@@ -152,7 +109,7 @@ public partial class HostileFish : CharacterBody2D
 
 	public void ChasePlayer(Vector2 soundOrigin)
 	{
-		speed = 300f;
+		speed = 150f;
 		chasing = true;
 		targetPos = soundOrigin;
 		direction = targetPos - Position;

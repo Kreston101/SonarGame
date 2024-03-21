@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvplf6je6vicm"]
+[gd_scene load_steps=10 format=3 uid="uid://dvplf6je6vicm"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerSubTest.cs" id="1_ulhf7"]
 [ext_resource type="Texture2D" uid="uid://c6aclvjhclai6" path="res://QuarterCircle.png" id="2_tl846"]
 [ext_resource type="Script" path="res://Scripts/RayScript.cs" id="3_0qcv2"]
 [ext_resource type="PackedScene" uid="uid://dfwucofmggw41" path="res://Scenes/area_ping.tscn" id="3_4xmwk"]
-[ext_resource type="Script" path="res://Scripts/Indicator.cs" id="4_lhgqj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_b7g1o"]
 
@@ -74,34 +73,29 @@ script = ExtResource("3_0qcv2")
 linkedIndicator = NodePath("../../Indicators/WestQuad")
 
 [node name="Indicators" type="Node2D" parent="."]
-rotation = 0.785398
 
 [node name="NorthQuad" type="Sprite2D" parent="Indicators"]
 position = Vector2(-55, -55)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
-script = ExtResource("4_lhgqj")
 
 [node name="EastQuad" type="Sprite2D" parent="Indicators"]
 position = Vector2(55, -55)
 rotation = 1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
-script = ExtResource("4_lhgqj")
 
 [node name="SouthQuad" type="Sprite2D" parent="Indicators"]
 position = Vector2(55, 55)
 rotation = 3.14159
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
-script = ExtResource("4_lhgqj")
 
 [node name="WestQuad" type="Sprite2D" parent="Indicators"]
 position = Vector2(-55, 55)
 rotation = -1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
-script = ExtResource("4_lhgqj")
 
 [node name="PassiveSonar" type="Area2D" parent="."]
 scale = Vector2(20, 20)
