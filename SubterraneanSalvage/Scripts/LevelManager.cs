@@ -84,6 +84,20 @@ public partial class LevelManager : Node2D
 		scene.Name = $"layout_{levelNum}";
 		GD.Print(scene.Name);
 
+		foreach(Node _child in scene.GetChildren())
+		{
+			GD.Print("looping nodes");
+			string _nodeName = _child.Name;
+			Marker2D fishSpawnPoint = _child as Marker2D;
+			if (_nodeName.Contains("FishSpawn"))
+			{
+				GD.Print("found fish");
+				Node2D hostileFishFab = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/hostile_fish.tscn").Instantiate();
+				hostileFishFab.GlobalPosition = fishSpawnPoint.GlobalPosition;
+				AddChild(hostileFishFab);
+			}
+		}
+
 		endPointMaker = (Node2D)GetNode($"layout_{levelNum}").GetChild(-1);
 		endPoint.Position = endPointMaker.Position;
 		endPoint.Show();

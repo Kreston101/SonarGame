@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dayastvmlvids"]
+[gd_scene load_steps=2 format=3 uid="uid://dayastvmlvids"]
 
 [ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="1_m30we"]
-[ext_resource type="PackedScene" uid="uid://cv6g0mefpfnl" path="res://Scenes/hostile_fish.tscn" id="2_fmcle"]
 
 [node name="layout_0" type="Node2D"]
 
@@ -21,8 +20,11 @@ scale = Vector2(20, 1)
 position = Vector2(1705, 428)
 scale = Vector2(1, 16.635)
 
-[node name="HostileFish" parent="." instance=ExtResource("2_fmcle")]
-position = Vector2(930, -193)
+[node name="FishSpawn" type="Marker2D" parent="."]
+position = Vector2(929, -203)
+
+[node name="FishSpawn2" type="Marker2D" parent="."]
+position = Vector2(1076, -38)
 
 [node name="EndPointMaker" type="Node2D" parent="."]
 position = Vector2(-190, 277)
