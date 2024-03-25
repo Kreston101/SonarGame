@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://bns5q0i0tdnug"]
+
+[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="1_gau4w"]
+[ext_resource type="PackedScene" uid="uid://dam4dri0vspe1" path="res://Scenes/sea_mine.tscn" id="2_2nt2u"]
+
+[node name="sea_mines" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="Wall" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(-313, -282)
+rotation = -0.598648
+scale = Vector2(10, 1)
+
+[node name="Wall2" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(-330, 364)
+rotation = 0.837758
+scale = Vector2(10, 1)
+
+[node name="Wall3" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(434, -256)
+rotation = 0.760964
+scale = Vector2(10, 1)
+
+[node name="Wall4" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(1743, -50)
+rotation = -0.120428
+scale = Vector2(20, 1)
+
+[node name="Wall5" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(725, 889)
+rotation = 0.195477
+scale = Vector2(15, 1)
+
+[node name="Wall6" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(2469, 293)
+rotation = -1.07687
+scale = Vector2(10, 1)
+
+[node name="Wall7" parent="." instance=ExtResource("1_gau4w")]
+position = Vector2(1854, 883)
+rotation = -0.359538
+scale = Vector2(9, 1)
+
+[node name="SeaMine" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1668, 286)
+
+[node name="SeaMine2" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1612, 626)
+
+[node name="SeaMine3" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(2039, 439)
+
+[node name="SeaMine4" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(2022, 32)
+
+[node name="SeaMine5" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(2370, 60)
+
+[node name="SeaMine6" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1974, 674)
+
+[node name="SeaMine7" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(378, 471)
+
+[node name="SeaMine9" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(757, 697)
+
+[node name="SeaMine10" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1101, 212)
+
+[node name="SeaMine8" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1403, 885)
+
+[node name="SeaMine11" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1133, 665)
+
+[node name="SeaMine12" parent="." instance=ExtResource("2_2nt2u")]
+position = Vector2(1340, 471)
+
+[node name="EndPointMaker" type="Node2D" parent="."]
+position = Vector2(2166, 254)

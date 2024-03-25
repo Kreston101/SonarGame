@@ -1,196 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://bns5q0i0tdnug"]
+[gd_scene load_steps=3 format=3 uid="uid://duhtntgsb4ywk"]
 
-[ext_resource type="PackedScene" uid="uid://dn7l8pm1ofaun" path="res://Scenes/test_brick.tscn" id="1_cosat"]
-[ext_resource type="PackedScene" uid="uid://dam4dri0vspe1" path="res://Scenes/sea_mine.tscn" id="2_ivjos"]
+[ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="1_i5fq4"]
 
-[node name="layout_2" type="Node2D"]
+[sub_resource type="Curve2D" id="Curve2D_8m6rf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1937, 1043, 0, 0, 0, 0, -1901, 1289, 0, 0, 0, 0, -1478, 1538, 0, 0, 0, 0, -1193, 1193, 0, 0, 0, 0, -1385, 986, 0, 0, 0, 0, -1940, 1040, 0, 0, 0, 0, -1937, 1043)
+}
+point_count = 7
+
+[node name="large_rock_in_middle" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-549, -425, 198, -561, 712, -78, 10, 536, -661, 319, -212, 1069, -681, 1754, -981, 1691, -1096, 1229, -1460, 1677, -1977, 1423, -2337, 937, -1997, 445, -2180, -72, -2596, -175, -2699, 408, -3305, 257, -2889, -1019, -1885, -544, -1332, -896, -558, -420, -571, -664, -1268, -1132, -3143, -1176, -3534, 379, -2535, 621, -2516, 970, -2164, 1517, -1496, 1848, -296, 2026, 919, -42, 278, -723, -562, -662)
 metadata/_edit_lock_ = true
 
-[node name="Wall" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(-313, -282)
-rotation = -0.598648
-scale = Vector2(10, 1)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-552, -424, 192, -560, 712, -76, 8, 532, -664, 316, -212, 1064, -680, 1752, -980, 1688, -1096, 1228, -1460, 1676, -1972, 1424, -2336, 936, -1996, 444, -2180, -72, -2596, -176, -2700, 408, -3304, 256, -2888, -1020, -1884, -544, -1332, -896, -557, -420, -569, -661, -1268, -1132, -3144, -1176, -3536, 380, -2536, 620, -2516, 972, -2164, 1516, -1496, 1848, -296, 2024, 920, -40, 276, -724, -564, -664)
+metadata/_edit_lock_ = true
 
-[node name="Wall2" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(-330, 364)
-rotation = 0.837758
-scale = Vector2(10, 1)
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Terrain"]]
 
-[node name="Wall3" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(434, -256)
-rotation = 0.760964
-scale = Vector2(10, 1)
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1382, -527, -1078, -47, -959, 471, -1455, 833, -1848, 917, -1655, 260)
 
-[node name="Wall4" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(1743, -50)
-rotation = -0.120428
-scale = Vector2(20, 1)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+position = Vector2(-5, -325)
+polygon = PackedVector2Array(-1378, -202, -1073, 278, -954, 796, -1449, 1158, -1844, 1243, -1649, 582)
+metadata/_edit_lock_ = true
 
-[node name="Wall5" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(577, 835)
-rotation = 0.195477
-scale = Vector2(12, 1)
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8m6rf")
 
-[node name="Wall6" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(2469, 293)
-rotation = -1.07687
-scale = Vector2(10, 1)
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-1937, 1043)
+rotation = 1.42549
 
-[node name="Wall7" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(1927, 842)
-rotation = -0.359538
-scale = Vector2(7, 1)
+[node name="Area2D" parent="Path2D/PathFollow2D" instance=ExtResource("1_i5fq4")]
+position = Vector2(8.58307e-06, -4.33922e-05)
+rotation = -1.42549
+speed = 100.0
 
-[node name="Wall8" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(819, 1379)
-rotation = -0.958186
-scale = Vector2(10, 1)
-
-[node name="Wall9" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(1835, 1450)
-rotation = -1.91463
-scale = Vector2(10, 1)
-
-[node name="Wall10" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(824, 2492)
-rotation = 1.18682
-scale = Vector2(15, 1)
-
-[node name="Wall11" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(1692, 2442)
-rotation = -1.01578
-scale = Vector2(12, 1)
-
-[node name="Wall12" parent="." instance=ExtResource("1_cosat")]
-position = Vector2(1233, 3046)
-rotation = -0.598648
-scale = Vector2(4, 1)
-
-[node name="SeaMine" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1668, 286)
-
-[node name="SeaMine2" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1612, 626)
-
-[node name="SeaMine3" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(2039, 439)
-
-[node name="SeaMine4" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(2022, 32)
-
-[node name="SeaMine5" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(2370, 60)
-
-[node name="SeaMine6" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1974, 674)
-
-[node name="SeaMine7" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(378, 471)
-
-[node name="SeaMine9" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(757, 697)
-
-[node name="SeaMine10" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1004, 288)
-
-[node name="SeaMine8" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1152, 1124)
-
-[node name="SeaMine11" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1379, 1360)
-
-[node name="SeaMine12" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1690, 1532)
-
-[node name="SeaMine13" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1108, 1337)
-
-[node name="SeaMine14" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1184, 1513)
-
-[node name="SeaMine15" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1444, 1674)
-
-[node name="SeaMine16" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1648, 1716)
-
-[node name="SeaMine17" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1012, 1674)
-
-[node name="SeaMine18" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1082, 1824)
-
-[node name="SeaMine19" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1424, 1897)
-
-[node name="SeaMine20" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(980, 1948)
-
-[node name="SeaMine21" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1314, 1028)
-
-[node name="SeaMine22" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1266, 1228)
-
-[node name="SeaMine23" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(970, 1479)
-
-[node name="SeaMine24" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1555, 1832)
-
-[node name="SeaMine25" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(877, 1615)
-
-[node name="SeaMine26" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(930, 1802)
-
-[node name="SeaMine27" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(724, 1856)
-
-[node name="SeaMine28" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(778, 2027)
-
-[node name="SeaMine29" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1482, 1995)
-
-[node name="SeaMine30" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1423, 2222)
-
-[node name="SeaMine31" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(965, 2132)
-
-[node name="SeaMine32" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1216, 2059)
-
-[node name="SeaMine33" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1575, 2134)
-
-[node name="SeaMine34" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1640, 1968)
-
-[node name="SeaMine35" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1771, 1829)
-
-[node name="SeaMine36" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1751, 2066)
-
-[node name="SeaMine38" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1413, 2565)
-
-[node name="SeaMine39" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1612, 2270)
-
-[node name="SeaMine40" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1512, 2362)
-
-[node name="SeaMine42" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1008, 2270)
-
-[node name="SeaMine43" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(899, 2300)
-
-[node name="SeaMine44" parent="." instance=ExtResource("2_ivjos")]
-position = Vector2(1040, 2477)
-
-[node name="EndPointMaker" type="Node2D" parent="."]
-position = Vector2(1152, 2950)
+[node name="EndPointMarker" type="Node2D" parent="."]
+position = Vector2(-2982, 228)

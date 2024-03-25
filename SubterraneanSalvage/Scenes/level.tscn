@@ -21,6 +21,7 @@ endPoint = NodePath("EndPoint")
 UI = NodePath("CanvasLayer")
 oxyTimer = NodePath("CanvasLayer/OxygenTimer")
 oxyLossRate = 10
+levelNum = 4
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
@@ -40,7 +41,7 @@ texture = SubResource("GradientTexture1D_3bvth")
 metadata/_edit_lock_ = true
 
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
-position = Vector2(1576, -562)
+position = Vector2(-574, -861)
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="." method="OnEndPointEntered"]
