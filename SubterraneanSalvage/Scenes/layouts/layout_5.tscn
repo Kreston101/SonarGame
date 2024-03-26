@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://c18fuf3scv7nh"]
+
+[ext_resource type="PackedScene" uid="uid://dam4dri0vspe1" path="res://Scenes/sea_mine.tscn" id="1_errlu"]
+[ext_resource type="PackedScene" uid="uid://0pgoj7hdumm4" path="res://Scenes/passive_creature.tscn" id="2_eatji"]
+
+[sub_resource type="Curve2D" id="Curve2D_co8hh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 797, 1559, 0, 0, 0, 0, 796, 1529, 0, 0, 0, 0, 798, 1559)
+}
+point_count = 3
+
+[node name="trapped_corridors" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+position = Vector2(-13, -182.3)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(150, 355, 249, 638, 147, 1034, 211, 1323, 93, 1704, 499, 1552, 696, 1187, 833, 911, 795, 577)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-13, -183.3)
+polygon = PackedVector2Array(150, 355, 249, 638, 147, 1034, 211, 1323, 93, 1704, 499, 1552, 696, 1187, 833, 911, 795, 577)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-149, 147, -229, 404, -384, 591, -165, 858, -331, 1063, -157, 1506, -726, 1191, -595, 745, -857, 358, -411, -144)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(-149, 147, -229, 404, -384, 591, -165, 858, -331, 1063, -157, 1506, -726, 1191, -595, 745, -857, 358, -411, -144)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D3"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-471, -89, -345, -215, 44, -311, 260, -155, 1129, 127, 1228, 579, 1288, 843, 1120, 1059, 1135, 1235, 877, 1230, 1114, 1367, 865, 1595, 617, 1664, 77, 1871, -91, 2000, -318, 1865, -160, 1505, -624, 1637, -495, 2006, -115, 2176, 1294, 1559, 1489, 864, 1306, -16, 58, -534, -674, -322)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+polygon = PackedVector2Array(-471, -89, -345, -215, 44, -311, 260, -155, 1129, 127, 1228, 579, 1288, 843, 1120, 1059, 1135, 1235, 877, 1230, 1114, 1367, 865, 1595, 617, 1664, 77, 1871, -91, 2000, -318, 1865, -160, 1505, -624, 1637, -495, 2006, -115, 2176, 1294, 1559, 1489, 864, 1306, -16, 58, -534, -674, -322)
+
+[node name="SeaMine" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-105, 208)
+
+[node name="SeaMine2" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-30, 271)
+
+[node name="SeaMine3" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(44, 201)
+
+[node name="SeaMine4" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(94, 278)
+
+[node name="SeaMine5" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-138, 343)
+
+[node name="SeaMine6" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-73, 403)
+
+[node name="SeaMine7" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(103, 371)
+
+[node name="SeaMine8" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(11, 353)
+
+[node name="SeaMine9" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(169, 448)
+
+[node name="SeaMine10" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(38, 460)
+
+[node name="SeaMine11" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(528, 222)
+
+[node name="SeaMine12" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(921, 118)
+
+[node name="SeaMine13" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(876, 506)
+
+[node name="SeaMine14" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(1173, 811)
+
+[node name="SeaMine15" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-187, 1827)
+
+[node name="SeaMine16" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(168, 1585)
+
+[node name="SeaMine17" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(-215, 1076)
+
+[node name="SeaMine18" parent="." instance=ExtResource("1_errlu")]
+position = Vector2(737, 1617)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_co8hh")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(797, 1559)
+rotation = -1.60412
+
+[node name="Area2D" parent="Path2D/PathFollow2D" instance=ExtResource("2_eatji")]
+position = Vector2(0, -1)
+rotation = 1.5708
+scale = Vector2(2.25, 2.25)
+speed = 10.0
+
+[node name="EndPointMarker" type="Node2D" parent="."]
+position = Vector2(-247, 587)

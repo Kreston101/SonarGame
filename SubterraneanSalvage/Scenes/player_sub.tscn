@@ -97,7 +97,7 @@ rotation = -1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_tl846")
 
-[node name="PassiveSonar" type="Area2D" parent="."]
+[node name="PassiveSonar" type="Area2D" parent="." groups=["PassiveSonar"]]
 scale = Vector2(20, 20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PassiveSonar"]

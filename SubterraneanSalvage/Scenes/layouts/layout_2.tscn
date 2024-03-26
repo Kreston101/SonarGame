@@ -14,7 +14,7 @@ point_count = 7
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-549, -425, 198, -561, 712, -78, 10, 536, -661, 319, -212, 1069, -681, 1754, -981, 1691, -1096, 1229, -1460, 1677, -1977, 1423, -2337, 937, -1997, 445, -2180, -72, -2596, -175, -2699, 408, -3305, 257, -2889, -1019, -1885, -544, -1332, -896, -558, -420, -571, -664, -1268, -1132, -3143, -1176, -3534, 379, -2535, 621, -2516, 970, -2164, 1517, -1496, 1848, -296, 2026, 919, -42, 278, -723, -562, -662)
+polygon = PackedVector2Array(-552, -424, 192, -560, 712, -76, 8, 532, -664, 316, -212, 1064, -680, 1752, -980, 1688, -1096, 1228, -1460, 1676, -1972, 1424, -2336, 936, -1996, 444, -2180, -72, -2596, -176, -2700, 408, -3304, 256, -2888, -1020, -1884, -544, -1332, -896, -557, -420, -569, -661, -1268, -1132, -3144, -1176, -3536, 380, -2536, 620, -2516, 972, -2164, 1516, -1496, 1848, -296, 2024, 920, -40, 276, -724, -564, -664)
 metadata/_edit_lock_ = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -24,8 +24,9 @@ metadata/_edit_lock_ = true
 [node name="StaticBody2D2" type="StaticBody2D" parent="." groups=["Terrain"]]
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D2"]
+position = Vector2(0, -324)
 color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(-1382, -527, -1078, -47, -959, 471, -1455, 833, -1848, 917, -1655, 260)
+polygon = PackedVector2Array(-1378, -202, -1073, 278, -954, 796, -1449, 1158, -1844, 1243, -1649, 582)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
 position = Vector2(-5, -325)
