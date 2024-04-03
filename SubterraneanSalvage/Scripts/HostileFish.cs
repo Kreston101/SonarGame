@@ -21,6 +21,8 @@ public partial class HostileFish : CharacterBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		chasing = false;
+		withinNoise = false;
 		lvlMan = (LevelManager)GetTree().Root.GetChild(0);
 		CreateDirection();
 	}

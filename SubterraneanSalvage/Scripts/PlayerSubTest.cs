@@ -87,7 +87,7 @@ public partial class PlayerSubTest : CharacterBody2D
 		}
 		else
 		{
-			GD.Print("current =" + Velocity + " " + makingNoise);
+			//GD.Print("current =" + Velocity + " " + makingNoise);
 			makingNoise = true;
 		}
 
@@ -95,13 +95,13 @@ public partial class PlayerSubTest : CharacterBody2D
 		KinematicCollision2D collision = MoveAndCollide(Velocity * speedMultiplier * (float)delta);
 		if (collision != null)
 		{
-			GD.Print("collision");
+			//GD.Print("collision");
 			Node2D checkGroup = (Node2D)collision.GetCollider();
 			if (checkGroup.IsInGroup("Terrain"))
 			{
 				if (hasHitWall == false)
 				{
-					GD.Print("hit wall");
+					//GD.Print("hit wall");
 					hasHitWall = true;
 					LevelManager lvlManScript = levelManager as LevelManager;
 					lvlManScript.DamagePlayer();
@@ -109,10 +109,10 @@ public partial class PlayerSubTest : CharacterBody2D
 			}
 			else if (checkGroup.IsInGroup("Hostile"))
 			{
-				GD.Print("hit fish");
+				//GD.Print("hit fish");
 				LevelManager lvlManScript = levelManager as LevelManager;
 				lvlManScript.ForceTimeout();
-				GD.Print("time out called plyer");
+				//GD.Print("time out called plyer");
 			}
 		}
 		else
@@ -167,7 +167,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	public void ResetSpeed()
 	{
 		speedMultiplier = 1f;
-		noiseArea.Scale -= new Vector2(1f, 1f);
+		noiseArea.Scale = new Vector2(1f, 1f);
 	}
 
 	public void PingMarker()

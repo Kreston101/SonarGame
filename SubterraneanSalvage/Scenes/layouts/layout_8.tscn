@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceuh34yy3oasx"]
+
+[ext_resource type="PackedScene" uid="uid://cv6g0mefpfnl" path="res://Scenes/hostile_fish.tscn" id="1_7euut"]
+
+[node name="Run" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Terrain"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-182, 118, 369, 54, 756, 383, 527, 592, 800, 861, 1018, 568, 1388, 952, 551, 1641, -361, 760, -690, 1049, -431, 1298, -871, 1657, 221, 2774, 1242, 2760, 3070, 992, 3897, 1022, 3526, 1909, 4119, 3011, 4964, 2580, 4407, 1783, 4623, 1082, 5773, 2514, 5641, 3125, 5300, 3491, 5809, 3922, 6355, 3419, 6409, 2652, 4999, 908, 5316, 123, 6305, 409, 6471, -353, 5271, -527, 4923, -347, 4619, 573, 3065, 517, 2969, 208, 2542, 368, 2680, 592, 2568, 971, 1223, 2280, 1049, 2061, 800, 2052, 773, 2292, 331, 2301, -395, 1671, -126, 1402, 491, 2028, 1661, 1115, 1778, 937, 526, -179, 295, -114, -210, -49, -186, 114, -326, 133, -416, -469, 5194, -721, 6725, -550, 6782, 2547, 6715, 4034, 5578, 4243, 331, 3180, -1378, 1666, -631, 644, -324, 143)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-182, 118, 369, 54, 756, 383, 527, 592, 800, 861, 1018, 568, 1388, 952, 551, 1641, -361, 760, -690, 1049, -431, 1298, -871, 1657, 221, 2774, 1242, 2760, 3070, 992, 3897, 1022, 3526, 1909, 4119, 3011, 4964, 2580, 4407, 1783, 4623, 1082, 5773, 2514, 5641, 3125, 5300, 3491, 5809, 3922, 6355, 3419, 6409, 2652, 4999, 908, 5316, 123, 6305, 409, 6471, -353, 5271, -527, 4923, -347, 4619, 573, 3065, 517, 2969, 208, 2542, 368, 2680, 592, 2568, 971, 1223, 2280, 1049, 2061, 800, 2052, 773, 2292, 331, 2301, -395, 1671, -126, 1402, 491, 2028, 1661, 1115, 1778, 937, 526, -179, 295, -114, -210, -49, -186, 114, -326, 133, -416, -469, 5194, -721, 6725, -550, 6782, 2547, 6715, 4034, 5578, 4243, 331, 3180, -1378, 1666, -631, 644, -324, 143)
+
+[node name="HostileFish" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(-389, 1055)
+
+[node name="HostileFish2" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(961, 2194)
+
+[node name="HostileFish3" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(4051, 2315)
+
+[node name="HostileFish4" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(4252, 2607)
+
+[node name="HostileFish5" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(4565, 2436)
+
+[node name="HostileFish6" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(6157, 82)
+
+[node name="HostileFish7" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(6092, -240)
+
+[node name="HostileFish8" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(5840, -69)
+
+[node name="HostileFish9" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(790, 637)
+
+[node name="HostileFish10" parent="." instance=ExtResource("1_7euut")]
+position = Vector2(2835, 419)
+
+[node name="EndPointMarker" type="Node2D" parent="."]
+position = Vector2(5638, 3671)

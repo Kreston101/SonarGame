@@ -21,7 +21,6 @@ endPoint = NodePath("EndPoint")
 UI = NodePath("CanvasLayer")
 oxyTimer = NodePath("CanvasLayer/OxygenTimer")
 oxyLossRate = 10
-levelNum = 5
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]

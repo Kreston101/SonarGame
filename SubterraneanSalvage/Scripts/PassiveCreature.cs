@@ -13,7 +13,6 @@ public partial class PassiveCreature : Area2D
 	public override void _Ready()
 	{
 		followPath = (PathFollow2D)GetParent();
-		Hide();
 		//GD.Print($"{followPath} {Name}");
 	}
 
@@ -21,21 +20,5 @@ public partial class PassiveCreature : Area2D
 	public override void _Process(double delta)
 	{
 		followPath.Progress += speed * (float)delta;
-	}
-
-	private void OnAreaEntered(Area2D area)
-	{
-		if (area.IsInGroup("PassiveSonar"))
-		{
-			Show();
-		}
-	}
-
-	private void OnAreaExited(Area2D area)
-	{
-		if (area.IsInGroup("PassiveSonar"))
-		{
-			Hide();
-		}
 	}
 }

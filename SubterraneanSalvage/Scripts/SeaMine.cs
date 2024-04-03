@@ -28,6 +28,7 @@ public partial class SeaMine : Area2D
 
 	private void OnPassiveSonarEnter(Area2D area)
 	{
+		GD.Print(area.Name);
 		Show();
 	}
 }
