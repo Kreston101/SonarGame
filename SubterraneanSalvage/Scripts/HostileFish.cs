@@ -111,10 +111,11 @@ public partial class HostileFish : CharacterBody2D
 
 	public void ChasePlayer(Vector2 soundOrigin)
 	{
+		GetNode<AudioStreamPlayer2D>("AggroFish").Play();
 		speed = 150f;
 		chasing = true;
 		targetPos = soundOrigin;
 		direction = targetPos - Position;
-		GD.Print("chase player called");
+		//GD.Print("chase player called");
 	}
 }

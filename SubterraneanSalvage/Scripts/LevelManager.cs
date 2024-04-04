@@ -26,6 +26,7 @@ public partial class LevelManager : Node2D
 	private float loadLevelTimer = 0f;
 	private bool playerDead = false;
 	private float timer = 0f;
+	private float ambienceTimer = 0f;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -45,6 +46,10 @@ public partial class LevelManager : Node2D
 		{
 			GD.Print("loading level");
 			loadLevelTimer += (float)delta;
+			if(loadLevelTimer > 1f)
+			{
+				UIScript.HideLevelCleared();
+			}
 			if (loadLevelTimer > 5f)
 			{
 				GD.Print("called loader");
@@ -57,7 +62,22 @@ public partial class LevelManager : Node2D
 			timer += (float)delta;
 			if(timer > 2f)
 			{
+				UIScript.HideGameOver();
+				UIScript.ResetTint();
 				ReloadLevel();
+			}
+		}
+
+		if (levelLoaded)
+		{
+			if(levelNum >= 5)
+			{
+				ambienceTimer += (float)delta;
+				if (ambienceTimer > 20f)
+				{
+					GetNode<AudioStreamPlayer>("MonsterAmbience").Play();
+					ambienceTimer = 0f;
+				}
 			}
 		}
 	}
@@ -67,11 +87,8 @@ public partial class LevelManager : Node2D
 		GetTree().Paused = false;
 		
 		player.GlobalPosition = Vector2.Zero;
-
-		UIScript.HideLevelCleared();
-		UIScript.HideGameOver();
-		UIScript.ResetTint();
-		GD.Print("loading level");
+		
+		//GD.Print("loading level");
 		loadLevelTimer = 0f;
 		playerScript.ResetSpeed();
 
@@ -82,16 +99,16 @@ public partial class LevelManager : Node2D
 
 		AddChild(scene);
 		scene.Name = $"layout_{levelNum}";
-		GD.Print(scene.Name);
+		//GD.Print(scene.Name);
 
 		foreach(Node _child in scene.GetChildren())
 		{
-			GD.Print("looping nodes");
+			//GD.Print("looping nodes");
 			string _nodeName = _child.Name;
 			Marker2D fishSpawnPoint = _child as Marker2D;
 			if (_nodeName.Contains("FishSpawn"))
 			{
-				GD.Print("found fish");
+				//GD.Print("found fish");
 				Node2D hostileFishFab = (Node2D)ResourceLoader.Load<PackedScene>("res://Scenes/hostile_fish.tscn").Instantiate();
 				hostileFishFab.GlobalPosition = fishSpawnPoint.GlobalPosition;
 				AddChild(hostileFishFab);
@@ -107,7 +124,7 @@ public partial class LevelManager : Node2D
 		oxyTimer.Start();
 
 		currentLayout = (Node2D)scene;
-		GD.Print(currentLayout.Name + " loaded");
+		//GD.Print(currentLayout.Name + " loaded");
 		levelLoaded = true;
 	}
 
@@ -120,12 +137,13 @@ public partial class LevelManager : Node2D
 
 	private void RootOnOxyTimerTimeout()
 	{
+		GetNode<AudioStreamPlayer>("PlayerDeathSound").Play();
 		GetTree().Paused = true;
 		player.Modulate = new Color(1, 0, 0);
 		UIScript.ShowGameOver();
 		playerDead = true;
 		GetChild(-1).QueueFree();
-		GD.Print("dead");
+		//GD.Print("dead");
 	}
 
 	public void DamagePlayer()
@@ -137,7 +155,7 @@ public partial class LevelManager : Node2D
 	{
 		if (body.IsInGroup("Player"))
 		{
-			GD.Print("level cleared");
+			//GD.Print("level cleared");
 			GetTree().Paused = true;
 			UIScript.ShowLevelCleared();
 			levelNum += 1;
@@ -145,6 +163,7 @@ public partial class LevelManager : Node2D
 			levelLoaded = false;
 			player.Hide();
 			endPoint.Hide();
+			GetNode<AudioStreamPlayer>("LvlTransition").Play();
 		}	
 	}	
 
@@ -152,7 +171,7 @@ public partial class LevelManager : Node2D
 	{
 		GetTree().Paused = false;
 		player.GlobalPosition = Vector2.Zero;
-		GD.Print(player.GlobalPosition + "reload");
+		//GD.Print(player.GlobalPosition + "reload");
 		playerDead = false;
 		timer = 0f;
 		levelLoaded = false;

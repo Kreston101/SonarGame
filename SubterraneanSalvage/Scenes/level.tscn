@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch8njdwl883wa"]
+[gd_scene load_steps=12 format=3 uid="uid://ch8njdwl883wa"]
 
 [ext_resource type="Script" path="res://Scripts/LevelManager.cs" id="1_ewlfb"]
 [ext_resource type="PackedScene" uid="uid://7oe3kb4dnw13" path="res://Scenes/ui_scene.tscn" id="1_nfnir"]
 [ext_resource type="PackedScene" uid="uid://dvplf6je6vicm" path="res://Scenes/player_sub.tscn" id="3_bep4k"]
 [ext_resource type="PackedScene" uid="uid://d2oodqqubugm7" path="res://Scenes/ranged_ping.tscn" id="5_wc8r5"]
 [ext_resource type="PackedScene" uid="uid://mtyfej00peu7" path="res://Scenes/end_point.tscn" id="6_4ua16"]
+[ext_resource type="AudioStream" uid="uid://im0ftu6r12x1" path="res://Audio/Ambience1.mp3" id="6_lvvc6"]
+[ext_resource type="AudioStream" uid="uid://y4bbsgum2iip" path="res://Audio/LevelTransition.mp3" id="7_b67es"]
+[ext_resource type="AudioStream" uid="uid://dqqu3chylnjge" path="res://Audio/DeathSound.mp3" id="8_ma24f"]
+[ext_resource type="AudioStream" uid="uid://bqddqi1my8h21" path="res://Audio/MonsterAmbience1.mp3" id="9_skowk"]
 
 [sub_resource type="Gradient" id="Gradient_n1mmo"]
 offsets = PackedFloat32Array(0)
@@ -21,6 +25,7 @@ endPoint = NodePath("EndPoint")
 UI = NodePath("CanvasLayer")
 oxyTimer = NodePath("CanvasLayer/OxygenTimer")
 oxyLossRate = 10
+levelNum = 1
 stageOxy = 120.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("1_nfnir")]
@@ -33,6 +38,7 @@ levelManager = NodePath("..")
 metadata/_edit_lock_ = true
 
 [node name="DebugBg" type="Sprite2D" parent="PlayerSub/Camera2D"]
+visible = false
 z_index = -1
 position = Vector2(1.5, -2)
 scale = Vector2(4.49609, 646)
@@ -41,6 +47,21 @@ metadata/_edit_lock_ = true
 
 [node name="EndPoint" parent="." instance=ExtResource("6_4ua16")]
 position = Vector2(-574, -861)
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lvvc6")
+volume_db = -1.0
+autoplay = true
+
+[node name="LvlTransition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b67es")
+
+[node name="PlayerDeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ma24f")
+volume_db = 5.0
+
+[node name="MonsterAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_skowk")
 
 [connection signal="timeout" from="CanvasLayer/OxygenTimer" to="." method="RootOnOxyTimerTimeout"]
 [connection signal="body_entered" from="EndPoint" to="." method="OnEndPointEntered"]

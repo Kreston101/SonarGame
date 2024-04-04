@@ -16,7 +16,7 @@ public partial class PlayerSubTest : CharacterBody2D
 	[Export] public Node levelManager;
 
 	//public float minPingTime = 0.5f;
-	public float maxPingTime = 5f;
+	public float maxPingTime = 3f;
 	public bool hasHitWall = false;
 	public bool makingNoise = false;
 
@@ -41,7 +41,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			if (speedMultiplier < 1.5f)
 			{
 				speedMultiplier += 0.5f;
-				noiseArea.Scale += new Vector2(0.33f, 0.33f);
+				noiseArea.Scale += new Vector2(0.66f, 0.66f);
 			}
 			//GD.Print(speedMultiplier);
 			//GD.Print(noiseArea.Scale);
@@ -51,7 +51,7 @@ public partial class PlayerSubTest : CharacterBody2D
 			if (speedMultiplier > 0.5f)
 			{
 				speedMultiplier -= 0.5f;
-				noiseArea.Scale -= new Vector2(0.33f, 0.33f);
+				noiseArea.Scale -= new Vector2(0.66f, 0.66f);
 			}
 			//GD.Print(speedMultiplier);
 			//GD.Print(noiseArea.Scale);
@@ -102,6 +102,7 @@ public partial class PlayerSubTest : CharacterBody2D
 				if (hasHitWall == false)
 				{
 					//GD.Print("hit wall");
+					GetNode<AudioStreamPlayer>("DamageSound").Play();
 					hasHitWall = true;
 					LevelManager lvlManScript = levelManager as LevelManager;
 					lvlManScript.DamagePlayer();
@@ -142,10 +143,12 @@ public partial class PlayerSubTest : CharacterBody2D
 		if (timeHeld >= maxPingTime)
 		{
 			timeHeld = maxPingTime;
+			GetNode<AudioStreamPlayer>("PingLong").Play();
 		}
 		else
 		{
 			timeHeld = (float)Math.Round(timeHeld);
+			GetNode<AudioStreamPlayer>("PingShort").Play();
 			//GD.Print(timeHeld + " abs");
 		}
 
