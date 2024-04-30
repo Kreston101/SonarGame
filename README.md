@@ -3,7 +3,7 @@ Concept test
 
 Todo list:
 - [x] Movement system
-  - [ ] Movements make sound
+  - [x] Movements make sound
 - [x] Sonar system
   - [x] Basic ping
   - [x] Charge basic ping
@@ -14,9 +14,9 @@ Todo list:
   - [x] Stand in system
 - [ ] Enemies/Obstacles
   - [x] Passive creature
-  - [ ] Patroling enemy
-  - [ ] Enemy that wakes up
-- [ ] 3-5 playable levels
+  - [x] Patroling enemy
+  - [ ] Enemy sleeping state *CHANGED*
+- [x] 3-5 playable levels
 - [ ] Hostile entity
 
 Finish core mechanic by 12/01/24 (1-3)
