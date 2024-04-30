@@ -14,10 +14,10 @@ Todo list:
   - [x] Stand in system
 - [ ] Enemies/Obstacles
   - [x] Passive creature
-  - [x] Patroling enemy
+  - [x] Enemy patrol state *CHANGED*
   - [ ] Enemy sleeping state *CHANGED*
 - [x] 3-5 playable levels
-- [ ] Hostile entity
+- [x] Hostile entity
 
 Finish core mechanic by 12/01/24 (1-3)
 - [x] Visuals exist
@@ -26,5 +26,5 @@ Potentially todo:
 - [ ] Side objectives
 - [ ] Proper sprites
 - [ ] Storyline
-- [ ] Fully playable game
-- [ ] Design sounds ._______.
+- [x] minimal playable game
+- [x] ~~Design~~ "Steal" sounds
